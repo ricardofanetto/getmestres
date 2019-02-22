@@ -1,25 +1,18 @@
-import {getRepository} from "typeorm";
-import {NextFunction, Request, Response} from "express";
-import {User} from "../entity/User";
+import { Request } from 'express';
+import { User } from "../entity/User";
+import { BaseController } from "./BaseController";
 
-export class UserController {
+export class UserController extends BaseController<User> {
 
-    private userRepository = getRepository(User);
-
-    async all(request: Request, response: Response, next: NextFunction) {
-        return this.userRepository.find();
+    constructor() {
+        super(User);
     }
 
-    async one(request: Request, response: Response, next: NextFunction) {
-        return this.userRepository.findOne(request.params.id);
-    }
-
-    async save(request: Request, response: Response, next: NextFunction) {
-        return this.userRepository.save(request.body);
-    }
-
-    async remove(request: Request, response: Response, next: NextFunction) {
-        await this.userRepository.remove(request.params.id);
+    async save(request: Request) {
+        let _user = <User>request.body;
+        super.isRequired(_user.name, 'O nome do usuário é obrigatório');
+        super.isRequired(_user.photo, 'A foto do usuário é obrigatória');
+        return super.save(_user);
     }
 
 }
