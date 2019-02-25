@@ -8,13 +8,16 @@
       "typescript": "2.5.2"
    },
    "dependencies": {
-      "typeorm": "0.2.7",
-      "reflect-metadata": "^0.1.10",
-      "mysql": "^2.14.1",
+      "body-parser": "^1.18.1",
       "express": "^4.15.4",
-      "body-parser": "^1.18.1"
+      "jsonwebtoken": "^8.5.0",
+      "md5": "^2.2.1",
+      "mysql": "^2.14.1",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.7"
    },
    "scripts": {
-      "start": "ts-node src/index.ts"
+      "start": "ts-node src/index.ts",
+      "server": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts --delay 1500ms"
    }
 }

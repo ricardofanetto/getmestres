@@ -46,4 +46,8 @@ export abstract class BaseController<T> extends BaseNotification {
     return this._repository.save(model);
   }
 
+  get repostitory(): Repository<T> {
+    return this._repository;
+  }
+
 }
