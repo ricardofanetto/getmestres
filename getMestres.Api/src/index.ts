@@ -1,10 +1,10 @@
 import "reflect-metadata";
-import { createConnection } from "typeorm";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import { Request, Response } from "express";
 import { Routes } from "./routes";
 import config from "./configuration/config";
+import conneciton from "./configuration/connection";
 import auth from "./middlaware/auth";
 
 // create express app
@@ -34,8 +34,7 @@ Routes.forEach(route => {
 app.listen(config.port, '0.0.0.0', async () => {
     console.log(`Api initilze in port ${config.port}`);
     try {
-        await createConnection();
-        console.log('Database connected');
+       await conneciton.createConnection();
     } catch (error) {
         console.error('Data base not connected', error);
     }
