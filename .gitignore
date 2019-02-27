@@ -64,3 +64,4 @@ typings/
 ormconfig.json
 getMestres.Api/ormconfig.json
 getMestres.Api/ormconfig.json
+getMestres.Api/build

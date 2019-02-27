@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "identifier": "typescript",
+      "type": "typescript",
+      "tsconfig": "getMestres.Api/tsconfig.json",
+      "problemMatcher": [
+        "$tsc"
+      ]
+    }
+  ]
+}

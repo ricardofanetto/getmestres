@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug TypeScript in Node.js",
+      "preLaunchTask": "typescript",
+      "program": "${workspaceFolder}/getMestres.Api/src/index.ts",
+      "cwd": "${workspaceFolder}",
+      "protocol": "inspector",
+      "outFiles": [
+        "${workspaceFolder}/getMestres.Api/build/**/*.js"
+      ]
+    }
+  ]
+}
