@@ -1,3 +1,4 @@
+import { SubCategory } from './../entity/SubCategory';
 import { Category } from './../entity/Category';
 import { User } from './../entity/User';
 import { createConnection } from "typeorm";
@@ -18,7 +19,8 @@ export default {
         logging: false,
         entities: [
           User,
-          Category
+          Category,
+          SubCategory
         ]
       }
     );
