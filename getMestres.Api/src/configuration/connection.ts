@@ -1,3 +1,4 @@
+import { Question } from './../entity/Question';
 import { SubCategory } from './../entity/SubCategory';
 import { Category } from './../entity/Category';
 import { User } from './../entity/User';
@@ -20,7 +21,8 @@ export default {
         entities: [
           User,
           Category,
-          SubCategory
+          SubCategory,
+          Question
         ]
       }
     );
