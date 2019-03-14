@@ -11,7 +11,7 @@ import auth from "./middlaware/auth";
 const app = express();
 app.use(bodyParser.json());
 
-// app.use(auth);
+app.use(auth);
 
 // register express routes from defined application routes
 Routes.forEach(route => {
@@ -34,13 +34,8 @@ Routes.forEach(route => {
 app.listen(config.port, '0.0.0.0', async () => {
     console.log(`Api initilze in port ${config.port}`);
     try {
-        await conneciton.createConnection();
+       await conneciton.createConnection();
     } catch (error) {
         console.error('Data base not connected', error);
     }
 })
-
-export default {
-    server: app,
-    connection: conneciton
-}
