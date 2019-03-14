@@ -3,8 +3,13 @@
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
-      "ts-node": "3.3.0",
+      "@types/jest": "^24.0.11",
       "@types/node": "^8.0.29",
+      "@types/supertest": "^2.0.7",
+      "jest": "^24.5.0",
+      "supertest": "^4.0.0",
+      "ts-jest": "^24.0.0",
+      "ts-node": "3.3.0",
       "typescript": "2.5.2"
    },
    "dependencies": {
@@ -18,6 +23,7 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "server": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts --delay 1500ms"
+      "server": "nodemon --watch 'src/**/*.ts' --exec ts-node src/index.ts --delay 1500ms",
+      "test": "jest"
    }
 }
