@@ -1,3 +1,4 @@
+import { Customer } from '../entity/Customer';
 import { Question } from './../entity/Question';
 import { SubCategory } from './../entity/SubCategory';
 import { Category } from './../entity/Category';
@@ -22,7 +23,8 @@ export default {
           User,
           Category,
           SubCategory,
-          Question
+          Question,
+          Customer
         ]
       }
     );

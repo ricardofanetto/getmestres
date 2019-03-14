@@ -60,7 +60,7 @@ export class UserController extends BaseController<User> {
 
         _user.isRoot = isRoot;
 
-        return super.save(_user, request);
+        return super.save(_user, request, true);
     }
 
     async save(request: Request) {

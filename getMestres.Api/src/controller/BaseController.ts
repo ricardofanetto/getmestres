@@ -8,7 +8,7 @@ export abstract class BaseController<T> extends BaseNotification {
   private _onlyRootController: boolean = false;
   public errorRoot: any = {
     status: 401,
-    errors: [ 'Você não está autorizado a executar essa funcionalidade' ]
+    errors: ['Você não está autorizado a executar essa funcionalidade']
   }
 
   constructor(entity: any, onlyRoot: boolean = false) {
@@ -35,9 +35,10 @@ export abstract class BaseController<T> extends BaseNotification {
     return this._repository.findOne(request.params.id);
   }
 
-  async save(model: any, request: Request) {
-
-    if (this.checkNotPermission(request)) return this.errorRoot;
+  async save(model: any, request: Request, ignorePermissions: boolean = false) {
+    
+    if (!ignorePermissions)
+      if (this.checkNotPermission(request)) return this.errorRoot;
 
     if (model.uid) {
 
