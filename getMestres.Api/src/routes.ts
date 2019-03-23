@@ -4,6 +4,7 @@ import { SubCategoryController } from './controller/SubCategoryController';
 import { UserController } from "./controller/UserController";
 import { CategoryController } from "./controller/CategoryController";
 import { QuestionController } from './controller/QuestionController';
+import { RequestOrderController } from './controller/RequestOrderController';
 
 export const Routes = [
     { method: "get", route: "/users", controller: UserController, action: "all" },
@@ -38,5 +39,11 @@ export const Routes = [
     { method: "get", route: "/serviceProvider/:id", controller: ServiceProviderController, action: "one" },
     { method: "post", route: "/serviceProvider", controller: ServiceProviderController, action: "save" },
     { method: "post", route: "/serviceProvider/create", controller: ServiceProviderController, action: "createServiceProvider" },
-    { method: "delete", route: "/serviceProvider/:id", controller: ServiceProviderController, action: "remove" }
+    { method: "delete", route: "/serviceProvider/:id", controller: ServiceProviderController, action: "remove" },
+    
+    { method: "get", route: "/request", controller: RequestOrderController, action: "all" },
+    { method: "get", route: "/request/:id", controller: RequestOrderController, action: "one" },
+    { method: "post", route: "/request", controller: RequestOrderController, action: "save" },
+    { method: "delete", route: "/request/:id", controller: RequestOrderController, action: "remove" }
+
 ];
