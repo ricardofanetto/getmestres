@@ -6,6 +6,7 @@ import { User } from './../entity/User';
 import { createConnection } from "typeorm";
 import { ServiceProvider } from '../entity/ServiceProvider';
 import { RequestOrder } from '../entity/RequestOrder';
+import { RequestOrderAnswer } from '../entity/RequestOrderAnswer';
 
 const cfg = require('../../ormconfig.json');
 
@@ -28,7 +29,8 @@ export default {
           Question,
           Customer, 
           ServiceProvider,
-          RequestOrder
+          RequestOrder,
+          RequestOrderAnswer
         ]
       }
     );

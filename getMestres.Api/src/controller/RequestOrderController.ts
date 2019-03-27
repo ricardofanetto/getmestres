@@ -6,7 +6,7 @@ import { RequestStatus } from '../entity/enum/RequestStatus';
 export class RequestOrderController extends BaseController<RequestOrder> {
 
   constructor() {
-    super(RequestOrder);
+    super(RequestOrder, false);
   }
 
   async save(request: Request) {

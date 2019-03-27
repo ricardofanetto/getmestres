@@ -5,6 +5,7 @@ import { UserController } from "./controller/UserController";
 import { CategoryController } from "./controller/CategoryController";
 import { QuestionController } from './controller/QuestionController';
 import { RequestOrderController } from './controller/RequestOrderController';
+import { RequestOrderAnswerController } from './controller/RequestOrderAnswerController';
 
 export const Routes = [
     { method: "get", route: "/users", controller: UserController, action: "all" },
@@ -44,6 +45,10 @@ export const Routes = [
     { method: "get", route: "/request", controller: RequestOrderController, action: "all" },
     { method: "get", route: "/request/:id", controller: RequestOrderController, action: "one" },
     { method: "post", route: "/request", controller: RequestOrderController, action: "save" },
-    { method: "delete", route: "/request/:id", controller: RequestOrderController, action: "remove" }
+    { method: "delete", route: "/request/:id", controller: RequestOrderController, action: "remove" },
+
+    { method: "get", route: "/requestAnswer/:orderUid/all", controller: RequestOrderAnswerController, action: "all" },
+    { method: "post", route: "/requestAnswer", controller: RequestOrderAnswerController, action: "save" },
+    { method: "delete", route: "/requestAnswer/:id", controller: RequestOrderAnswerController, action: "remove" }
 
 ];
