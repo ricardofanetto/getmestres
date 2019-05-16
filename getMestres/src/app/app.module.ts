@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 import {
   MatToolbarModule, MatIconModule,
   MatButtonModule, MatSidenavModule,
@@ -15,17 +17,24 @@ import {
 
 import { PedidosPendentesComponent } from './components/pedidos-pendentes/pedidos-pendentes.component';
 import { CardsDashboardComponent } from './components/cards-dashboard/cards-dashboard.component';
+import { CategorysComponent } from './pages/categorys/categorys.component';
+import { CategoryComponent } from './pages/category/category.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     PedidosPendentesComponent,
-    CardsDashboardComponent
+    CardsDashboardComponent,
+    CategorysComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    NgxSpinnerModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

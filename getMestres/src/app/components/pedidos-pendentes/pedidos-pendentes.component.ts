@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { IPedidosPendentes } from '../../interfaces/IPedidosPendentes';
 
 
-export interface PedidosPendentes {
-  customerName: string;
-  date: string;
-  category: string;
-  subCategory: string;
-}
 
-const DATA_MOCK: PedidosPendentes[] = [
+
+const DATA_MOCK: IPedidosPendentes[] = [
   { customerName: 'Joao da Silva', date: '01/01/2019', category: 'Construção', subCategory: 'Reforma' },
   { customerName: 'Joao da Silva', date: '01/01/2019', category: 'Construção', subCategory: 'Reforma' },
   { customerName: 'Joao da Silva', date: '01/01/2019', category: 'Construção', subCategory: 'Reforma' },
@@ -23,7 +19,7 @@ const DATA_MOCK: PedidosPendentes[] = [
 })
 export class PedidosPendentesComponent implements OnInit {
   columns: string[] = ['Nome', 'Data', 'Categoria', 'SubCategoria'];
-  dataSource: MatTableDataSource<PedidosPendentes> = new MatTableDataSource<PedidosPendentes>(DATA_MOCK);
+  dataSource: MatTableDataSource<IPedidosPendentes> = new MatTableDataSource<IPedidosPendentes>(DATA_MOCK);
 
   constructor() { }
 
