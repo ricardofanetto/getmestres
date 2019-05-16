@@ -1,0 +1,22 @@
+<div class="div-table mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="Nome">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let element">{{ element.customerName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Data">
+      <th mat-header-cell *matHeaderCellDef>Data</th>
+      <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+    </ng-container>
+    <ng-container matColumnDef="Categoria">
+      <th mat-header-cell *matHeaderCellDef>Categoria</th>
+      <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+    </ng-container>
+    <ng-container matColumnDef="SubCategoria">
+      <th mat-header-cell *matHeaderCellDef>SubCategoria</th>
+      <td mat-cell *matCellDef="let element">{{ element.subCategory }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+  </table>
+</div>

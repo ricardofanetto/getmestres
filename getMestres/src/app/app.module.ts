@@ -8,12 +8,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatToolbarModule, MatIconModule,
   MatButtonModule, MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatTableModule,
+  MatCardModule
 } from '@angular/material';
+
+import { PedidosPendentesComponent } from './components/pedidos-pendentes/pedidos-pendentes.component';
+import { CardsDashboardComponent } from './components/cards-dashboard/cards-dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PedidosPendentesComponent,
+    CardsDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +30,9 @@ import {
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

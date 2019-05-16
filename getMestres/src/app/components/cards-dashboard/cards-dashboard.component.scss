@@ -1,0 +1,14 @@
+.cards_dashboard {
+  display: flex; 
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+mat-card {
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
