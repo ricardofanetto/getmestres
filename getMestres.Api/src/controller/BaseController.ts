@@ -32,11 +32,12 @@ export abstract class BaseController<T> extends BaseNotification {
 
   async one(request: Request) {
     if (this.checkNotPermission(request)) return this.errorRoot;
-    return this._repository.findOne(request.params.id);
+    const uid = request.params.id as string;
+    return this._repository.findOne(uid);
   }
 
   async save(model: any, request: Request, ignorePermissions: boolean = false) {
-    
+
     if (!ignorePermissions)
       if (this.checkNotPermission(request)) return this.errorRoot;
 
@@ -46,7 +47,8 @@ export abstract class BaseController<T> extends BaseNotification {
       delete model['upadateAt'];
       delete model['deleted'];
 
-      let _modelInDB = await this._repository.findOne(model.uid);
+      const uid = model.uid as string;
+      let _modelInDB = await this._repository.findOne(uid);
       if (_modelInDB) {
         Object.assign(_modelInDB, model);
       }
@@ -63,7 +65,7 @@ export abstract class BaseController<T> extends BaseNotification {
 
   async remove(request: Request) {
     if (this.checkNotPermission(request)) return this.errorRoot;
-    let uid = request.params.id;
+    let uid = request.params.id as string;
     let model: any = await this._repository.findOne(uid);
     if (model) {
       model.deleted = true;
