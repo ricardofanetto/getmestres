@@ -3,14 +3,13 @@
     <button mat-icon-button color="dark" (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <h1>GetMestres</h1>
+    <h1 routerLink="/">GetMestres</h1>
   </mat-toolbar>
   <mat-sidenav-container class="getmestres___side-nav-container">
     <mat-sidenav #sidenav mode="over">
       <mat-nav-list>
-
         <h3 mat-subheader>Cadastros</h3>
-        <a mat-list-item>
+        <a mat-list-item routerLink="/Categorys" (click)="sidenav.toggle()">
           <mat-icon>bookmark</mat-icon>
           Categorias
         </a>
@@ -48,8 +47,6 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <app-cards-dashboard></app-cards-dashboard>
-      <app-pedidos-pendentes></app-pedidos-pendentes>
       <ngx-spinner></ngx-spinner>
       <router-outlet></router-outlet>
     </mat-sidenav-content>

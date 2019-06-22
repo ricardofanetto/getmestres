@@ -20,6 +20,7 @@ import { CardsDashboardComponent } from './components/cards-dashboard/cards-dash
 import { CategorysComponent } from './pages/categorys/categorys.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     PedidosPendentesComponent,
     CardsDashboardComponent,
     CategorysComponent,
-    CategoryComponent
+    CategoryComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
