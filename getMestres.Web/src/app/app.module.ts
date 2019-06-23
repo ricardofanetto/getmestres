@@ -21,6 +21,7 @@ import { CategorysComponent } from './pages/categorys/categorys.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HomeComponent } from './pages/home/home.component';
     CardsDashboardComponent,
     CategorysComponent,
     CategoryComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
