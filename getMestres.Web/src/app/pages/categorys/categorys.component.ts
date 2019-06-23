@@ -12,10 +12,19 @@ export class CategorysComponent implements OnInit {
   columns: string[] = ['Nome', 'Descrição'];
   dataSource: MatTableDataSource<ICategory>;
 
-  constructor(private categorySrv: CategoryService) { }
+  constructor(private categorySrv: CategoryService) {
 
-  ngOnInit() {
-    
+  }
+
+  async ngOnInit() {
+    const categorys = await this.categorySrv.GetAll();
+    console.log('passei', categorys);
+    this.dataSource = categorys.data.map((it: ICategory) => {
+      return {
+        name: it.name,
+        description: it.description
+      };
+    });
   }
 
 }
