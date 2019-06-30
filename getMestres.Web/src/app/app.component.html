@@ -1,11 +1,11 @@
 <div class="getmestres___container_body">
-  <mat-toolbar color="primary" class="getmestres___toolbar">
+  <mat-toolbar color="primary" class="getmestres___toolbar" *ngIf="isLogged">
     <button mat-icon-button color="dark" (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <h1 routerLink="/">GetMestres</h1>
   </mat-toolbar>
-  <mat-sidenav-container class="getmestres___side-nav-container">
+  <mat-sidenav-container class="getmestres___side-nav-container" [ngClass]="{'clear-margin-top': !isLogged}">
     <mat-sidenav #sidenav mode="over">
       <mat-nav-list>
         <h3 mat-subheader>Cadastros</h3>

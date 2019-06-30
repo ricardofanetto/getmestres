@@ -7,8 +7,9 @@ import { CategoryComponent } from './pages/category/category.component';
 import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'login', component: LoginComponent },
-  { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AdminGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AdminGuard] },
   { path: 'Categorys', component: CategorysComponent, canActivate: [AdminGuard] },
   { path: 'Categorys/:id', component: CategoryComponent, canActivate: [AdminGuard] },
 ];

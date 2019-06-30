@@ -12,7 +12,10 @@ import {
   MatButtonModule, MatSidenavModule,
   MatListModule,
   MatTableModule,
-  MatCardModule
+  MatCardModule,
+  MatFormField,
+  MatInputModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { PedidosPendentesComponent } from './components/pedidos-pendentes/pedidos-pendentes.component';
@@ -22,6 +25,7 @@ import { CategoryComponent } from './pages/category/category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,8 @@ import { LoginComponent } from './pages/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     NgxSpinnerModule,
@@ -45,7 +51,9 @@ import { LoginComponent } from './pages/login/login.component';
     MatSidenavModule,
     MatListModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
