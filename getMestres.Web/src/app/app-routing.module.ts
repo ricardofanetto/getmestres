@@ -1,13 +1,17 @@
+import { AdminGuard } from './shared/admin.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CategorysComponent } from './pages/categorys/categorys.component';
 import { CategoryComponent } from './pages/category/category.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'Categorys', component: CategorysComponent },
-  { path: 'Categorys/:id', component: CategoryComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AdminGuard] },
+  { path: 'Categorys', component: CategorysComponent, canActivate: [AdminGuard] },
+  { path: 'Categorys/:id', component: CategoryComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({

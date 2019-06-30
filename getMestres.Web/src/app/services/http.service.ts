@@ -51,7 +51,7 @@ export class HttpService {
     return new Promise(async (resolve) => {
       try {
         this.spinner.show();
-        const res = await this.http.post(url, model, { headers: header });
+        const res = await this.http.post(url, model, { headers: header }).toPromise();
         resolve({ success: true, data: res, error: undefined });
         this.spinner.hide();
       } catch (error) {

@@ -12,7 +12,10 @@ import {
   MatButtonModule, MatSidenavModule,
   MatListModule,
   MatTableModule,
-  MatCardModule
+  MatCardModule,
+  MatFormField,
+  MatInputModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { PedidosPendentesComponent } from './components/pedidos-pendentes/pedidos-pendentes.component';
@@ -21,6 +24,8 @@ import { CategorysComponent } from './pages/categorys/categorys.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,11 +34,14 @@ import { HomeComponent } from './pages/home/home.component';
     CardsDashboardComponent,
     CategorysComponent,
     CategoryComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     NgxSpinnerModule,
@@ -43,7 +51,9 @@ import { HomeComponent } from './pages/home/home.component';
     MatSidenavModule,
     MatListModule,
     MatTableModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
