@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IResultHttp } from '../interfaces/IResultHttp';
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,17 @@ export class HttpService {
         this.spinner.hide();
       } catch (error) {
         this.spinner.hide();
+        if (error.status === 400) {
+          console.log(error.error);
+          let errorsText = '<ul>';
+          if (Array.isArray(error.error)) {
+            error.error.forEach(element => {
+              errorsText += `<li style="text-align: left">${element.message || element}</li>`;
+            });
+            errorsText += '</ul>';
+            Swal.fire('Atenção', errorsText, 'warning');
+          }
+        }
         resolve({ success: false, data: {}, error });
       }
     });

@@ -18,13 +18,11 @@ export class CategorysComponent implements OnInit {
 
   async ngOnInit() {
     const categorys = await this.categorySrv.GetAll();
-    console.log('passei', categorys);
-    this.dataSource = categorys.data.map((it: ICategory) => {
-      return {
-        name: it.name,
-        description: it.description
-      };
-    });
+    this.dataSource = new MatTableDataSource(categorys.data);
+  }
+
+  filter(value: string) {
+    this.dataSource.filter = value.trim().toLowerCase();
   }
 
 }
