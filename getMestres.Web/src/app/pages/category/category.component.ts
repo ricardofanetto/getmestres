@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryModel } from '../../model/categoryModel';
 import { ICategory } from '../../interfaces/ICategory';
 import { MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-category',
@@ -17,10 +19,18 @@ export class CategoryComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private matSnack: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private active: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.active.params.subscribe(p => this.getId(p.id));
+  }
+
+  async getId(uid: string): Promise<void> {
+    if (uid === 'new') { return; }
+    const result = await this.categoryService.GetById(uid);
+    this.category = result.data as CategoryModel;
   }
 
   async save(): Promise<void> {
