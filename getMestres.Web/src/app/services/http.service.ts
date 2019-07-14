@@ -78,7 +78,7 @@ export class HttpService {
     return new Promise(async (resolve) => {
       try {
         this.spinner.show();
-        const res = await this.http.delete(url, { headers: header });
+        const res = await this.http.delete(url, { headers: header }).toPromise();
         resolve({ success: true, data: res, error: undefined });
         this.spinner.hide();
       } catch (error) {

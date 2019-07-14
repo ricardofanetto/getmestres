@@ -15,7 +15,9 @@ import {
   MatCardModule,
   MatFormField,
   MatInputModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatPaginatorModule,
+  MatPaginatorIntl
 } from '@angular/material';
 
 import { PedidosPendentesComponent } from './components/pedidos-pendentes/pedidos-pendentes.component';
@@ -26,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { getPaginatorIntl } from './shared/paginator-intl';
 
 @NgModule({
   declarations: [
@@ -53,9 +56,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatCardModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule
   ],
-  providers: [],
+  providers: [{
+    provide: MatPaginatorIntl, useValue: getPaginatorIntl()
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
