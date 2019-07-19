@@ -17,13 +17,16 @@ import {
   MatInputModule,
   MatSnackBarModule,
   MatPaginatorModule,
-  MatPaginatorIntl
+  MatPaginatorIntl,
+  MatSelectModule
 } from '@angular/material';
 
 import { PedidosPendentesComponent } from './components/pedidos-pendentes/pedidos-pendentes.component';
 import { CardsDashboardComponent } from './components/cards-dashboard/cards-dashboard.component';
 import { CategorysComponent } from './pages/categorys/categorys.component';
 import { CategoryComponent } from './pages/category/category.component';
+import { SubCategoryComponent } from './pages/sub-category/sub-category.component';
+import { SubCategorysComponent } from './pages/sub-categorys/sub-categorys.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -38,7 +41,9 @@ import { getPaginatorIntl } from './shared/paginator-intl';
     CategorysComponent,
     CategoryComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    SubCategoryComponent,
+    SubCategorysComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,8 @@ import { getPaginatorIntl } from './shared/paginator-intl';
     MatCardModule,
     MatInputModule,
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule, 
+    MatSelectModule
   ],
   providers: [{
     provide: MatPaginatorIntl, useValue: getPaginatorIntl()
