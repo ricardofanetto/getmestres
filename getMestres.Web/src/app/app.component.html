@@ -13,11 +13,11 @@
           <mat-icon>bookmark</mat-icon>
           Categorias
         </a>
-        <a mat-list-item routerLink="/SubCategorys">
+        <a mat-list-item routerLink="/SubCategorys" (click)="sidenav.toggle()">
           <mat-icon>bookmark_border</mat-icon>
           SubCategorias
         </a>
-        <a mat-list-item>
+        <a mat-list-item routerLink="/Questions" (click)="sidenav.toggle()">
           <mat-icon>assignment</mat-icon>
           Questões
         </a>

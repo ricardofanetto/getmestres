@@ -1,3 +1,5 @@
+import { QuestionComponent } from './pages/question/question.component';
+import { QuestionsComponent } from './pages/questions/questions.component';
 import { SubCategoryComponent } from './pages/sub-category/sub-category.component';
 import { SubCategorysComponent } from './pages/sub-categorys/sub-categorys.component';
 import { AdminGuard } from './shared/admin.guard';
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'Categorys/:id', component: CategoryComponent, canActivate: [AdminGuard] },
   { path: 'SubCategorys', component: SubCategorysComponent, canActivate: [AdminGuard] },
   { path: 'SubCategorys/:id', component: SubCategoryComponent, canActivate: [AdminGuard] },
+  { path: 'Questions', component: QuestionsComponent, canActivate: [AdminGuard] },
+  { path: 'Questions/:id', component: QuestionComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({

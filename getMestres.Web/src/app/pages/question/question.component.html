@@ -1,0 +1,32 @@
+<div class="container">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Pergunta</mat-label>
+    <input matInput placeholder="preencha a sua pergunta" [(ngModel)]="model.question" required>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width" col-50>
+    <mat-label>Sub Categoria</mat-label>
+    <mat-select [(ngModel)]="model.subCategory.uid">
+      <mat-option *ngFor="let subCategory of subCategorys" [value]="subCategory.uid">
+        {{subCategory.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width no-margin-right" col-50>
+    <mat-label>Tipo</mat-label>
+    <mat-select [(ngModel)]="model.type">
+      <mat-option *ngFor="let types of questionsType" [value]="types.value">
+        {{types.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width" *ngIf="model.type === 3">
+    <mat-label>Opções</mat-label>
+    <textarea matInput placeholder="Descreva as opções separadas por virgula" rows="4"
+      [(ngModel)]="model.options"></textarea>
+  </mat-form-field>
+  <div class="toolbar___form">
+    <button mat-raised-button routerLink="/Questions">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+  </div>
+
+</div>
