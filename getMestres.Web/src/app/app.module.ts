@@ -32,6 +32,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { getPaginatorIntl } from './shared/paginator-intl';
+import { QuestionComponent } from './pages/question/question.component';
+import { QuestionsComponent } from './pages/questions/questions.component';
+import { QuestionTypePipe } from './pipes/question-type.pipe';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { getPaginatorIntl } from './shared/paginator-intl';
     HomeComponent,
     LoginComponent,
     SubCategoryComponent,
-    SubCategorysComponent
+    SubCategorysComponent,
+    QuestionComponent,
+    QuestionsComponent,
+    QuestionTypePipe
   ],
   imports: [
     BrowserModule,
