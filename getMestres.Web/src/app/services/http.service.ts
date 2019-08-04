@@ -47,8 +47,8 @@ export class HttpService {
     });
   }
 
-  public post(url: string, model: any): Promise<IResultHttp> {
-    const header = this.createHeader();
+  public post(url: string, model: any, headers?: HttpHeaders): Promise<IResultHttp> {
+    const header = this.createHeader(headers);
     return new Promise(async (resolve) => {
       try {
         this.spinner.show();

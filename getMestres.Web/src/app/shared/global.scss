@@ -83,6 +83,15 @@
     margin-top: 3px;
   }
 }
+
+input[type="file"] {
+  width: calc(100% - 40px);
+  border: 1px solid #dcdcdc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+}
+
 @media (max-width: 560px) {
   mat-sidenav-content {
     padding: 10px !important;

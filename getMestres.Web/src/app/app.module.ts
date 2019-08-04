@@ -35,6 +35,8 @@ import { getPaginatorIntl } from './shared/paginator-intl';
 import { QuestionComponent } from './pages/question/question.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
 import { QuestionTypePipe } from './pipes/question-type.pipe';
+import { CustomerComponent } from './pages/customer/customer.component';
+import { CustomersComponent } from './pages/customers/customers.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { QuestionTypePipe } from './pipes/question-type.pipe';
     SubCategorysComponent,
     QuestionComponent,
     QuestionsComponent,
-    QuestionTypePipe
+    QuestionTypePipe,
+    CustomerComponent,
+    CustomersComponent
   ],
   imports: [
     BrowserModule,
