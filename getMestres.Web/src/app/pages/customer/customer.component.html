@@ -1,0 +1,20 @@
+<div class="container">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nome</mat-label>
+    <input matInput placeholder="preencha o nome do cliente" [(ngModel)]="model.name" required>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>E-mail</mat-label>
+    <input matInput placeholder="preencha o e-mail" type="email" [(ngModel)]="model.email" required>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Telefone</mat-label>
+    <input matInput placeholder="preencha o telefone" [(ngModel)]="model.phone" required>
+  </mat-form-field>
+  <input type="file" [(ngModel)]="model.photo">
+  <div class="toolbar___form">
+    <button mat-raised-button routerLink="/Customer">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+  </div>
+
+</div>

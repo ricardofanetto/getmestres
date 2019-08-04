@@ -8,42 +8,13 @@
   <mat-sidenav-container class="getmestres___side-nav-container" [ngClass]="{'clear-margin-top': !isLogged}">
     <mat-sidenav #sidenav mode="over">
       <mat-nav-list>
-        <h3 mat-subheader>Cadastros</h3>
-        <a mat-list-item routerLink="/Categorys" (click)="sidenav.toggle()">
-          <mat-icon>bookmark</mat-icon>
-          Categorias
-        </a>
-        <a mat-list-item routerLink="/SubCategorys" (click)="sidenav.toggle()">
-          <mat-icon>bookmark_border</mat-icon>
-          SubCategorias
-        </a>
-        <a mat-list-item routerLink="/Questions" (click)="sidenav.toggle()">
-          <mat-icon>assignment</mat-icon>
-          Questões
-        </a>
-
-        <h3 mat-subheader>Pessoas</h3>
-        <a mat-list-item>
-          <mat-icon>person_pin</mat-icon>
-          Profissionais
-        </a>
-        <a mat-list-item>
-          <mat-icon>person</mat-icon>
-          Clientes
-        </a>
-
-        <h3 mat-subheader>Segurança</h3>
-        <a mat-list-item>
-          <mat-icon>security</mat-icon>
-          Usuários
-        </a>
-
-        <h3 mat-subheader>Gerenciamento</h3>
-        <a mat-list-item>
-          <mat-icon>format_list_bulleted</mat-icon>
-          Pedidos
-        </a>
-
+        <div *ngFor="let item of menu">
+          <h3 mat-subheader>{{item.group}}</h3>
+          <a *ngFor="let option of item.items" mat-list-item [routerLink]="option.url" (click)="sidenav.toggle()">
+            <mat-icon>{{option.icon}}</mat-icon>
+            {{option.label}}
+          </a>
+        </div>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

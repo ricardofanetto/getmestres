@@ -1,3 +1,5 @@
+import { CustomerComponent } from './pages/customer/customer.component';
+import { CustomersComponent } from './pages/customers/customers.component';
 import { QuestionComponent } from './pages/question/question.component';
 import { QuestionsComponent } from './pages/questions/questions.component';
 import { SubCategoryComponent } from './pages/sub-category/sub-category.component';
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'SubCategorys/:id', component: SubCategoryComponent, canActivate: [AdminGuard] },
   { path: 'Questions', component: QuestionsComponent, canActivate: [AdminGuard] },
   { path: 'Questions/:id', component: QuestionComponent, canActivate: [AdminGuard] },
+  { path: 'Customers', component: CustomersComponent, canActivate: [AdminGuard] },
+  { path: 'Customers/:id', component: CustomerComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({
