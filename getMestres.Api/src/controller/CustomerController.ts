@@ -2,6 +2,7 @@ import { Request } from 'express';
 import { Customer } from './../entity/Customer';
 import { BaseController } from "./BaseController";
 import * as md5 from 'md5';
+import { FileHelper } from '../helpers/fileHelper';
 
 export class CustomerController extends BaseController<Customer> {
 
@@ -16,6 +17,12 @@ export class CustomerController extends BaseController<Customer> {
     super.isRequired(_customer.photo, 'A foto é obrigatória');
     super.isRequired(_customer.email, 'E-mail é obrigatório');
     super.isRequired(_customer.phone, 'Telefone é obrigatório');
+
+    if (_customer.photo) {
+      let pictureCreatedResult = await FileHelper.writePicture(_customer.photo)
+      if (pictureCreatedResult)
+        _customer.photo = pictureCreatedResult
+    }
 
     delete _customer.password;
 
@@ -34,6 +41,12 @@ export class CustomerController extends BaseController<Customer> {
     super.isRequired(_customer.password, 'A senha é obrigatório');
     super.isRequired(confirmPassword, 'A confirmação da senha é obrigatório');
     super.isTrue((_customer.password != confirmPassword), 'A senha e a confirmação de senha estão diferentes');
+
+    if (_customer.photo) {
+      let pictureCreatedResult = await FileHelper.writePicture(_customer.photo)
+      if (pictureCreatedResult)
+        _customer.photo = pictureCreatedResult
+    }
 
     if (_customer.password)
       _customer.password = md5(_customer.password);

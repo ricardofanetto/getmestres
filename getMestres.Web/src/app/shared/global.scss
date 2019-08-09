@@ -84,12 +84,13 @@
   }
 }
 
-input[type="file"] {
+app-input-file {
   width: calc(100% - 40px);
   border: 1px solid #dcdcdc;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 3px;
+  float: left;
 }
 
 @media (max-width: 560px) {

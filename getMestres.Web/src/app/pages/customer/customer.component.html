@@ -11,10 +11,9 @@
     <mat-label>Telefone</mat-label>
     <input matInput placeholder="preencha o telefone" [(ngModel)]="model.phone" required>
   </mat-form-field>
-  <input type="file" [(ngModel)]="model.photo">
+  <app-input-file [image]="model.photo" (select)="selectedFile($event)"></app-input-file>
   <div class="toolbar___form">
     <button mat-raised-button routerLink="/Customer">Cancelar</button>
     <button mat-raised-button color="primary" (click)="save()">Salvar</button>
   </div>
-
 </div>
