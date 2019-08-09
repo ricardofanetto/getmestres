@@ -3,6 +3,7 @@ import { CustomerModel } from './../../model/customerModel';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FileManager } from '../../components/input-file/input-file.component';
 
 @Component({
   selector: 'app-customer',
@@ -37,5 +38,12 @@ export class CustomerComponent implements OnInit {
       this.router.navigateByUrl('/Customers');
     }
   }
+
+  selectedFile(file: FileManager): void {
+    if (file.base64Data) {
+      this.model.photo = file.base64Data;
+    }
+  }
+
 
 }

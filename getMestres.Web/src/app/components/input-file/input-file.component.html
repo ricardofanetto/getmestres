@@ -1,0 +1,9 @@
+<div class="input-file" (click)="selectFile()">
+  <div *ngIf="fileCurrent.name" class="preview" [ngStyle]="{'background-image': 'url(' + fileCurrent.base64Data + ')'}">
+  </div>
+  <div class="content">
+    <span *ngIf="!fileCurrent.name">{{label}}</span>
+    <span *ngIf="fileCurrent.name">Arquivo: <strong>{{ fileCurrent.name }}</strong></span>
+    <input #fileinput type="file" class="upload" [(ngModel)]="file" (change)="handleFileSelect($event)" />
+  </div>
+</div>
