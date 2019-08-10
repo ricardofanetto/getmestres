@@ -1,3 +1,4 @@
+import { StorageController } from './controller/StorageController';
 import { ServiceProviderController } from './controller/ServiceProviderController';
 import { CustomerController } from './controller/CustomerController';
 import { SubCategoryController } from './controller/SubCategoryController';
@@ -49,6 +50,8 @@ export const Routes = [
 
     { method: "get", route: "/requestAnswer/:orderUid/all", controller: RequestOrderAnswerController, action: "all" },
     { method: "post", route: "/requestAnswer", controller: RequestOrderAnswerController, action: "save" },
-    { method: "delete", route: "/requestAnswer/:id", controller: RequestOrderAnswerController, action: "remove" }
+    { method: "delete", route: "/requestAnswer/:id", controller: RequestOrderAnswerController, action: "remove" }, 
+
+    { method: "get", route: "/storage/:filename", controller: StorageController, action: "getFile" },
 
 ];

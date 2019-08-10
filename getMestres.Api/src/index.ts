@@ -10,9 +10,9 @@ import auth from "./middlaware/auth";
 
 // create express app
 const app = express();
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(cors());
-// app.use(auth);
+app.use(auth);
 
 // register express routes from defined application routes
 Routes.forEach(route => {
@@ -23,6 +23,8 @@ Routes.forEach(route => {
             result.then(d => {
                 if (d && d.status)
                     res.status(d.status).send(d.message || d.errors);
+                else if (d && d.file)
+                    res.sendFile(d.file)
                 else
                     res.json(d);
             });
@@ -35,7 +37,7 @@ Routes.forEach(route => {
 app.listen(config.port, '0.0.0.0', async () => {
     console.log(`Api initilze in port ${config.port}`);
     try {
-       await conneciton.createConnection();
+        await conneciton.createConnection();
     } catch (error) {
         console.error('Data base not connected', error);
     }
