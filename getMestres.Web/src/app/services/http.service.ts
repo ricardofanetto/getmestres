@@ -24,9 +24,9 @@ export class HttpService {
     header = header.append('Content-Type', 'application/json');
     header = header.append('Accept', 'application/json');
 
-    const token = '';
+    const token = localStorage.getItem('getmestres:token');
     if (token) {
-      header = header.append('x-access-token', token);
+      header = header.append('x-token-access', token);
     }
 
     return header;

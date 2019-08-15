@@ -35,4 +35,7 @@ export class UserService extends BaseService<any> {
     return !!localStorage.getItem('getmestres:token');
   }
 
+  static get token(): string {
+    return localStorage.getItem('getmestres:token');
+  }
 }

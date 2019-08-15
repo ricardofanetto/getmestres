@@ -12,7 +12,7 @@ export default async (req: Request, res: Response, next: Function) => {
   let _userRepository: Repository<User> = getRepository(User);
 
   publicRoutes.forEach(url => {
-    let isPublic = req.url.includes(url);
+    let isPublic = req.url.includes(url) || req.url.indexOf('storage') > -1;
     if (isPublic)
       isPublicRoute = true;
   });

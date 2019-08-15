@@ -72,6 +72,7 @@
     "component-class-suffix": true,
     "directive-class-suffix": true,
     "eofline": false,
-    "no-inferrable-types": false
+    "no-inferrable-types": false,
+    "no-trailing-whitespace": false
   }
 }

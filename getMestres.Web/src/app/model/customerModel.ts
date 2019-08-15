@@ -5,4 +5,6 @@ export class CustomerModel extends BaseModel {
   email: string;
   photo: string;
   phone: string;
+  password: string;
+  confirmPassword: string;
 }
