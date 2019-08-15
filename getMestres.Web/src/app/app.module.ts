@@ -38,6 +38,8 @@ import { QuestionTypePipe } from './pipes/question-type.pipe';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { CustomersComponent } from './pages/customers/customers.component';
 import { InputFileComponent } from './components/input-file/input-file.component';
+import { ServiceProvidersComponent } from './pages/service-providers/service-providers.component';
+import { ServiceProviderComponent } from './pages/service-provider/service-provider.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { InputFileComponent } from './components/input-file/input-file.component
     QuestionTypePipe,
     CustomerComponent,
     CustomersComponent,
-    InputFileComponent
+    InputFileComponent,
+    ServiceProvidersComponent,
+    ServiceProviderComponent
   ],
   imports: [
     BrowserModule,

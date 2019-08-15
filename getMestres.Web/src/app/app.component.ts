@@ -40,7 +40,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.menu.push({
       group: 'Pessoas',
       items: [
-        { icon: 'person', label: 'Profissionais', url: '/' },
+        { icon: 'person', label: 'Profissionais', url: '/ServiceProviders' },
         { icon: 'person_pin', label: ' Clientes', url: '/Customers' },
       ]
     });
