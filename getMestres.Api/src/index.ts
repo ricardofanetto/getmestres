@@ -12,7 +12,7 @@ import auth from "./middlaware/auth";
 const app = express();
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(cors());
-app.use(auth);
+// app.use(auth);
 
 // register express routes from defined application routes
 Routes.forEach(route => {

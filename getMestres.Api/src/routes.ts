@@ -7,6 +7,7 @@ import { CategoryController } from "./controller/CategoryController";
 import { QuestionController } from './controller/QuestionController';
 import { RequestOrderController } from './controller/RequestOrderController';
 import { RequestOrderAnswerController } from './controller/RequestOrderAnswerController';
+import AddressController from './controller/AddressController';
 
 export const Routes = [
     { method: "get", route: "/users", controller: UserController, action: "all" },
@@ -53,5 +54,8 @@ export const Routes = [
     { method: "delete", route: "/requestAnswer/:id", controller: RequestOrderAnswerController, action: "remove" }, 
 
     { method: "get", route: "/storage/:filename", controller: StorageController, action: "getFile" },
+    
+    { method: "get", route: "/address", controller: AddressController, action: "getAllStates" },
+    { method: "get", route: "/address/:state", controller: AddressController, action: "getAllCities" },
 
 ];
