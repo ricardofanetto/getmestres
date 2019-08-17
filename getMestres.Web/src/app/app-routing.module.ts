@@ -1,3 +1,4 @@
+import { ServiceProviderComponent } from './pages/service-provider/service-provider.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { CustomersComponent } from './pages/customers/customers.component';
 import { QuestionComponent } from './pages/question/question.component';
@@ -11,6 +12,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CategorysComponent } from './pages/categorys/categorys.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ServiceProvidersComponent } from './pages/service-providers/service-providers.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'Questions/:id', component: QuestionComponent, canActivate: [AdminGuard] },
   { path: 'Customers', component: CustomersComponent, canActivate: [AdminGuard] },
   { path: 'Customers/:id', component: CustomerComponent, canActivate: [AdminGuard] },
+  { path: 'ServiceProviders', component: ServiceProvidersComponent, canActivate: [AdminGuard] },
+  { path: 'ServiceProviders/:id', component: ServiceProviderComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({
