@@ -93,6 +93,22 @@ app-input-file {
   float: left;
 }
 
+.title-divider {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  color: #673ab7;
+  font-weight: lighter;
+}
+
+.container-configuration {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 @media (max-width: 560px) {
   mat-sidenav-content {
     padding: 10px !important;
