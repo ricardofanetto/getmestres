@@ -24,6 +24,11 @@
     <mat-label>Descrição</mat-label>
     <textarea matInput placeholder="Descreva a descrição" rows="4" [(ngModel)]="model.description"></textarea>
   </mat-form-field>
+
+  <div class="title-divider">
+    Endereço
+  </div>
+
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Endereço</mat-label>
     <input matInput placeholder="Endereço" [(ngModel)]="model.address">
@@ -32,6 +37,25 @@
     <mat-label>Complemento</mat-label>
     <input matInput placeholder="Complemento do endereço" [(ngModel)]="model.addressComplement">
   </mat-form-field>
+
+  <div class="title-divider">
+    Configurações de atendimento
+  </div>
+
+  <div class="container-configuration">
+    <div class="card">
+      <mat-list>
+        <mat-list-item>item adicionado</mat-list-item>
+      </mat-list>
+    </div>
+    <div class="card">
+      <mat-list>
+        <mat-list-item>item adicionado</mat-list-item>
+      </mat-list>
+
+    </div>
+  </div>
+
   <div class="toolbar___form">
     <button mat-raised-button routerLink="/Customers">Cancelar</button>
     <button mat-raised-button color="primary" (click)="save()">Salvar</button>

@@ -1,3 +1,5 @@
+import { AddressService } from './../../services/address.service';
+import { CategoryService } from './../../services/category.service';
 import { ServiceProviderService } from './../../services/service-provider.service';
 import { Component, OnInit } from '@angular/core';
 import { ServiceProviderModel } from '../../model/serviceProviderModel';
@@ -16,6 +18,8 @@ export class ServiceProviderComponent implements OnInit {
 
   constructor(
     private serviceProviderSrv: ServiceProviderService,
+    private categorySrv: CategoryService,
+    private addressSrv: AddressService,
     private matSnack: MatSnackBar,
     private router: Router,
     private active: ActivatedRoute
