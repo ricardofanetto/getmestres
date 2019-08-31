@@ -1,9 +1,14 @@
+import { AddressService } from './../../services/address.service';
+import { CategoryService } from './../../services/category.service';
 import { ServiceProviderService } from './../../services/service-provider.service';
 import { Component, OnInit } from '@angular/core';
 import { ServiceProviderModel } from '../../model/serviceProviderModel';
 import { MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FileManager } from '../../components/input-file/input-file.component';
+import { SubCategoryModel } from '../../model/subCategoryModel';
+import { CategoryModel } from '../../model/categoryModel';
+import { SubcategoryService } from '../../services/subcategory.service';
 
 @Component({
   selector: 'app-service-provider',
@@ -13,9 +18,15 @@ import { FileManager } from '../../components/input-file/input-file.component';
 export class ServiceProviderComponent implements OnInit {
 
   model: ServiceProviderModel = new ServiceProviderModel();
+  subCategoriesSelect: Array<SubCategoryModel> = new Array<SubCategoryModel>();
+  categories: Array<CategoryModel>;
+  subCategories: Array<SubCategoryModel>;
 
   constructor(
     private serviceProviderSrv: ServiceProviderService,
+    private categorySrv: CategoryService,
+    private subCategorySrv: SubcategoryService,
+    private addressSrv: AddressService,
     private matSnack: MatSnackBar,
     private router: Router,
     private active: ActivatedRoute
@@ -23,6 +34,21 @@ export class ServiceProviderComponent implements OnInit {
 
   ngOnInit() {
     this.active.params.subscribe(p => this.getId(p.id));
+    this.bindCategorys();
+  }
+
+  async bindCategorys(): Promise<void> {
+    const result = await this.categorySrv.GetAll();
+    if (result.success) {
+      this.categories = result.data as Array<CategoryModel>;
+    }
+  }
+
+  async bindSubCategorys(categoryUid: string): Promise<void> {
+    const result = await this.subCategorySrv.getAllByCategory(categoryUid);
+    if (result.success) {
+      this.subCategories = result.data as Array<SubCategoryModel>;
+    }
   }
 
   async getId(uid: string): Promise<void> {

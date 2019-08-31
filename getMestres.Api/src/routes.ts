@@ -1,3 +1,4 @@
+import { AddressController } from './controller/AddressController';
 import { StorageController } from './controller/StorageController';
 import { ServiceProviderController } from './controller/ServiceProviderController';
 import { CustomerController } from './controller/CustomerController';
@@ -17,6 +18,7 @@ export const Routes = [
     { method: "delete", route: "/users/:id", controller: UserController, action: "remove" },
 
     { method: "get", route: "/category", controller: CategoryController, action: "all" },
+    { method: "get", route: "/category/:id/subcategorys", controller: CategoryController, action: "getAllSubCategorys" },
     { method: "get", route: "/category/:id", controller: CategoryController, action: "one" },
     { method: "post", route: "/category", controller: CategoryController, action: "save" },
     { method: "delete", route: "/category/:id", controller: CategoryController, action: "remove" },
@@ -53,5 +55,8 @@ export const Routes = [
     { method: "delete", route: "/requestAnswer/:id", controller: RequestOrderAnswerController, action: "remove" }, 
 
     { method: "get", route: "/storage/:filename", controller: StorageController, action: "getFile" },
+
+    { method: "get", route: "/address/", controller: AddressController, action: "getAllStates" },
+    { method: "get", route: "/address/:state", controller: AddressController, action: "getAllCities" },
 
 ];
