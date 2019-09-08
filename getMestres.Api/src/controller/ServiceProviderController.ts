@@ -22,7 +22,8 @@ export class ServiceProviderController extends BaseController<ServiceProvider> {
   }
 
   async save(request: Request) {
-    let _serviceProvider = <ServiceProvider>request.body;
+    const _serviceProvider = <ServiceProvider>request.body;
+    const { confirmPassword } = request.body;
 
     this.validationDefault(_serviceProvider);
 
@@ -32,7 +33,14 @@ export class ServiceProviderController extends BaseController<ServiceProvider> {
         _serviceProvider.photo = pictureCreatedResult
     }
 
-    delete _serviceProvider.password;
+    if (!_serviceProvider.uid) {
+      super.isRequired(_serviceProvider.password, 'A senha é obrigatório');
+      super.isRequired(confirmPassword, 'A confirmação da senha é obrigatório');
+      super.isTrue((_serviceProvider.password != confirmPassword), 'A senha e a confirmação de senha estão diferentes');
+
+    } else {
+      delete _serviceProvider.password;
+    }
 
     return super.save(_serviceProvider, request);
 
