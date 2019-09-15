@@ -1,4 +1,5 @@
-import { Injectable, EventEmitter, OnInit } from '@angular/core';
+import { UserModel } from './../model/userModel';
+import { Injectable } from '@angular/core';
 import { BaseService } from '../base/base.service';
 import { HttpService } from './http.service';
 import { IResultHttp } from '../interfaces/IResultHttp';
@@ -8,7 +9,7 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends BaseService<any> {
+export class UserService extends BaseService<UserModel> {
 
   private loginSubject = new Subject<boolean>();
 

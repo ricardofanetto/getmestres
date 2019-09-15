@@ -1,3 +1,5 @@
+import { UsersComponent } from './pages/users/users.component';
+import { UserComponent } from './pages/user/user.component';
 import { ServiceProviderComponent } from './pages/service-provider/service-provider.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { CustomersComponent } from './pages/customers/customers.component';
@@ -28,6 +30,8 @@ const routes: Routes = [
   { path: 'Customers/:id', component: CustomerComponent, canActivate: [AdminGuard] },
   { path: 'ServiceProviders', component: ServiceProvidersComponent, canActivate: [AdminGuard] },
   { path: 'ServiceProviders/:id', component: ServiceProviderComponent, canActivate: [AdminGuard] },
+  { path: 'Users', component: UserComponent, canActivate: [AdminGuard] },
+  { path: 'Users/:id', component: UsersComponent, canActivate: [AdminGuard] },
 ];
 
 @NgModule({
