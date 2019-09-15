@@ -18,7 +18,8 @@ import {
   MatSnackBarModule,
   MatPaginatorModule,
   MatPaginatorIntl,
-  MatSelectModule
+  MatSelectModule,
+  MatCheckboxModule
 } from '@angular/material';
 
 import { PedidosPendentesComponent } from './components/pedidos-pendentes/pedidos-pendentes.component';
@@ -40,6 +41,8 @@ import { CustomersComponent } from './pages/customers/customers.component';
 import { InputFileComponent } from './components/input-file/input-file.component';
 import { ServiceProvidersComponent } from './pages/service-providers/service-providers.component';
 import { ServiceProviderComponent } from './pages/service-provider/service-provider.component';
+import { UsersComponent } from './pages/users/users.component';
+import { UserComponent } from './pages/user/user.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,9 @@ import { ServiceProviderComponent } from './pages/service-provider/service-provi
     CustomersComponent,
     InputFileComponent,
     ServiceProvidersComponent,
-    ServiceProviderComponent
+    ServiceProviderComponent,
+    UsersComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +84,8 @@ import { ServiceProviderComponent } from './pages/service-provider/service-provi
     MatInputModule,
     MatSnackBarModule,
     MatPaginatorModule, 
-    MatSelectModule
+    MatSelectModule, 
+    MatCheckboxModule
   ],
   providers: [{
     provide: MatPaginatorIntl, useValue: getPaginatorIntl()
