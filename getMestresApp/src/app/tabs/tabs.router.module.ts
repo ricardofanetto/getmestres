@@ -17,22 +17,32 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
+        path: 'tabAceitos',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+              import('../aceitos/aceitos.module').then(m => m.AceitosPageModule)
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'tabConcluidos',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+              import('../concluidos/concluidos.module').then(m => m.ConcluidosPageModule)
+          }
+        ]
+      },
+      {
+        path: 'tabPerfil',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../perfil/perfil.module').then(m => m.PerfilPageModule)
           }
         ]
       },
