@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
+  perfil: string = localStorage.getItem('getmestres:perfil');
+
   constructor() {}
 
 }

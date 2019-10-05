@@ -1,6 +1,9 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+
+const perfil: string = localStorage.getItem('getmestres:perfil');
 
 const routes: Routes = [
   {
@@ -47,15 +50,35 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'tabSolicitacoes',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../solicitacoes/solicitacoes.module').then(m => m.SolicitacoesPageModule)
+          }
+        ]
+      },
+      {
+        path: 'tabAtendidas',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../atendidas/atendidas.module').then(m => m.AtendidasPageModule)
+          }
+        ]
+      },
+      {
         path: '',
-        redirectTo: '/tabs/tabDisponiveis',
+        redirectTo: perfil === 'profissional' ? '/tabs/tabDisponiveis' : '/tabs/tabSolicitacoes',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tabDisponiveis',
+    redirectTo: perfil === 'profissional' ? '/tabs/tabDisponiveis' : '/tabs/tabSolicitacoes',
     pathMatch: 'full'
   }
 ];
