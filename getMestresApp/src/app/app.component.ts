@@ -23,7 +23,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
 
-      // localStorage.setItem('getmestres:perfil', 'cliente');
+      localStorage.setItem('getmestres:perfil', 'cliente');
     });
   }
 }
