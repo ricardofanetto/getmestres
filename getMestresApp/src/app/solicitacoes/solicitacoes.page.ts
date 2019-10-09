@@ -1,4 +1,7 @@
+import { RequestOrderModel } from './../../models/requestOrderModel';
 import { Component, OnInit } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-solicitacoes',
@@ -6,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./solicitacoes.page.scss'],
 })
 export class SolicitacoesPage implements OnInit {
+
+  list: Array<RequestOrderModel> = new Array<RequestOrderModel>();
 
   constructor() { }
 
