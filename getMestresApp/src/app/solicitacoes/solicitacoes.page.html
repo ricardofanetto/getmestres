@@ -9,16 +9,20 @@
   </ion-fab>
 </ion-header>
 <ion-content>
-  <ion-card>
+  <ion-card *ngFor="let request of list">
     <ion-card-title>
-      Criar um novo aplicativo bem bacana
+      {{ request.title }}
     </ion-card-title>
     <ion-card-subtitle>
-      Software e Aplicativo
+      {{ request.subCategory.name }}
     </ion-card-subtitle>
     <ion-card-content>
-      Gostaria de criar um aplicativo bem bacana feito em ionic 4/5 e bem estilso ...
+      {{ request.description | truncate:50 }}
     </ion-card-content>
   </ion-card>
-
+  <ion-card *ngIf="list.length === 0">
+    <ion-card-content>
+      Você ainda não fez nenhuma solicitação, clique no botão + acima para começar :D
+    </ion-card-content>
+  </ion-card>
 </ion-content>
