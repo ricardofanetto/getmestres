@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +7,8 @@ import { LoadingController } from '@ionic/angular';
 export class SpinnerService {
 
   private spinner: HTMLIonLoadingElement = null;
-
-  constructor(public loading: LoadingController) {
-
+  
+  constructor(private loadingCtrl: LoadingController) {
   }
 
   async Show(message?: string): Promise<void> {
@@ -20,7 +19,7 @@ export class SpinnerService {
       this.spinner.message = message;
     }
   }
-
+  
   Hide(): void {
     if (this.spinner != null) {
       this.spinner.dismiss();

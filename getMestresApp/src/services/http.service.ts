@@ -1,9 +1,8 @@
-import { IResultHttp } from './../interfaces/IResultHttp';
-import { AlertService } from './alert.service';
 import { SpinnerService } from './spinner.service';
+import { AlertService } from './alert.service';
+import { IResultHttp } from './../interfaces/IResultHttp';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +11,10 @@ export class HttpService {
 
   constructor(
     private http: HttpClient,
-    private spinnerSrv: SpinnerService,
-    private alertSrv: AlertService
-  ) { }
+    private alertSrv: AlertService, 
+    private spinnerSrv: SpinnerService) {
 
+  }
 
   private createHeader(header?: HttpHeaders): HttpHeaders {
 

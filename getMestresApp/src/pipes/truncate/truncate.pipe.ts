@@ -12,7 +12,7 @@ export class TruncatePipe implements PipeTransform {
         return value;
       }
     } catch (error) {
-      console.error('TruncatePipe', {value, count, error});
+      console.log('TruncatePipe', { value, count, error });
       return value;
     }
   }

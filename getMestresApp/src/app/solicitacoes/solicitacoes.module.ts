@@ -1,4 +1,4 @@
-import { PipesModule } from '../../pipes/pipes.module';
+import { PipesModule } from './../../pipes/pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
