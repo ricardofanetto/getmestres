@@ -54,10 +54,10 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () =>
-              import('../solicitacoes/solicitacoes.module').then(m => m.SolicitacoesPageModule)
+            loadChildren: () => import('../solicitacoes/solicitacoes.module').then(m => m.SolicitacoesPageModule)
           }, {
-             path: 'nova-solicitacao', loadChildren: './nova-solicitacao/nova-solicitacao.module#NovaSolicitacaoPageModule' }
+            path: 'nova-solicitacao',
+            loadChildren: () => import('../nova-solicitacao/nova-solicitacao.module').then(m => m.NovaSolicitacaoPageModule)
           }
         ]
       },
