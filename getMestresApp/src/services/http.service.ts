@@ -11,7 +11,7 @@ export class HttpService {
 
   constructor(
     private http: HttpClient,
-    private alertSrv: AlertService, 
+    private alertSrv: AlertService,
     private spinnerSrv: SpinnerService) {
 
   }
@@ -37,12 +37,12 @@ export class HttpService {
     const header = this.createHeader();
     return new Promise(async (resolve) => {
       try {
-        this.spinnerSrv.Show();
+        await this.spinnerSrv.Show();
         const res = await this.http.get(url, { headers: header }).toPromise();
         resolve({ success: true, data: res, error: undefined });
-        this.spinnerSrv.Hide();
+        await this.spinnerSrv.Hide();
       } catch (error) {
-        this.spinnerSrv.Hide();
+        await this.spinnerSrv.Hide();
         resolve({ success: false, data: {}, error });
       }
     });
@@ -52,12 +52,12 @@ export class HttpService {
     const header = this.createHeader(headers);
     return new Promise(async (resolve) => {
       try {
-        this.spinnerSrv.Show();
+        await this.spinnerSrv.Show();
         const res = await this.http.post(url, model, { headers: header }).toPromise();
         resolve({ success: true, data: res, error: undefined });
-        this.spinnerSrv.Hide();
+        await this.spinnerSrv.Hide();
       } catch (error) {
-        this.spinnerSrv.Hide();
+        await this.spinnerSrv.Hide();
         if (error.status === 400) {
           console.log(error.error);
           let errorsText = '<ul>';
@@ -66,7 +66,7 @@ export class HttpService {
               errorsText += `<li style="text-align: left">${element.message || element}</li>`;
             });
             errorsText += '</ul>';
-            this.alertSrv.alert('Atenção', errorsText);
+            await this.alertSrv.alert('Atenção', errorsText);
           }
         }
         resolve({ success: false, data: {}, error });
@@ -78,12 +78,12 @@ export class HttpService {
     const header = this.createHeader();
     return new Promise(async (resolve) => {
       try {
-        this.spinnerSrv.Show();
+        await this.spinnerSrv.Show();
         const res = await this.http.delete(url, { headers: header }).toPromise();
         resolve({ success: true, data: res, error: undefined });
-        this.spinnerSrv.Hide();
+        await this.spinnerSrv.Hide();
       } catch (error) {
-        this.spinnerSrv.Hide();
+        await this.spinnerSrv.Hide();
         resolve({ success: false, data: {}, error });
       }
     });

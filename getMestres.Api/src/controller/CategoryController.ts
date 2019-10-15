@@ -18,6 +18,14 @@ export class CategoryController extends BaseController<Category> {
     return super.save(_category, request);
   }
 
+  async all(request: Request) {
+    return this.repostitory.find({
+      where: {
+        deleted: false
+      }
+    });
+  }
+
   getAllSubCategorys(request: Request) {
     const { id: categoryId } = request.params;
     return this._subCategoryRespository.find({
