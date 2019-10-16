@@ -59,6 +59,13 @@ const routes: Routes = [
           {
             path: 'nova-solicitacao',
             loadChildren: () => import('../nova-solicitacao/nova-solicitacao.module').then(m => m.NovaSolicitacaoPageModule)
+          },
+          {
+            path: 'nova-solicitacao-sub-categoria',
+            loadChildren: () =>
+            import(
+              '../nova-solicitacao-sub-categoria/nova-solicitacao-sub-categoria.module'
+              ).then(m => m.NovaSolicitacaoSubCategoriaPageModule)
           }
         ]
       },
