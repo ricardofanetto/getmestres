@@ -30,8 +30,9 @@ export class CategoryController extends BaseController<Category> {
     const { id: categoryId } = request.params;
     return this._subCategoryRespository.find({
       where: {
-        category: categoryId, 
-        deleted: false
+        category: categoryId,
+        deleted: false,
+        active: true
       }
     })
   }
