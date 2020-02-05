@@ -5,16 +5,35 @@
     </ion-buttons>
     <ion-title>{{ subCategory.name }} </ion-title>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="send()">
         Enviar
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list lines="none">
+  <ion-list class="ion-padding" lines="none">
     <ion-item>
       Preencha o formulário abaixo para finalizar sua solicitação
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Título da Solicitação</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item *ngFor="let q of questions">
+      <ion-label class="ion-text-wrap" position="stacked">{{q.question}}</ion-label>
+
+      <ion-input *ngIf="q.type === 1" [(ngModel)]="anserws[q.uid]" [(ngModel)]="anserws[q.uid]"></ion-input>
+
+      <ion-datetime *ngIf="q.type === 2" doneText="Ok" cancelText="Cancelar" [(ngModel)]="anserws[q.uid]" displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY"></ion-datetime>
+
+      <ion-select *ngIf="q.type === 3" [(ngModel)]="anserws[q.uid]" placeholder="Selecione">
+        <ion-select-option *ngFor="let op of getOptions(q)" [value]="op">{{op}}</ion-select-option>
+      </ion-select>
+
+      <ion-textarea *ngIf="q.type === 4" [(ngModel)]="anserws[q.uid]" rows="6" placeholder="Descreva melhor...">
+      </ion-textarea>
+
     </ion-item>
   </ion-list>
 </ion-content>

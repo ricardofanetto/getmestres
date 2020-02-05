@@ -1,9 +1,9 @@
 import { QuestionsService } from './../../services/questions.service';
 import { SubCategoryModel } from './../../models/subCategoryModel';
-import { FormControl, FormBuilder, FormGroup, FormArray, Validator } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuestionModel } from '../../models/questionModel';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-nova-solicitacao-perguntas',
@@ -14,13 +14,12 @@ export class NovaSolicitacaoPerguntasPage implements OnInit {
 
   subCategory: SubCategoryModel = new SubCategoryModel();
   questions: Array<QuestionModel> = new Array<QuestionModel>();
-  form1: FormGroup;
-  formArrQuestions: FormArray;
+  anserws: any = [];
 
   constructor(
     private router: Router,
     private questionsSrv: QuestionsService,
-    private formBuilder: FormBuilder
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -30,10 +29,10 @@ export class NovaSolicitacaoPerguntasPage implements OnInit {
         this.subCategory = extras.state as SubCategoryModel;
         this.loadData();
       } else {
-        this.router.navigateByUrl('/tabs');
+        this.navCtrl.navigateRoot('/tabs');
       }
     } catch (error) {
-      this.router.navigateByUrl('/tabs');
+      this.navCtrl.navigateRoot('/tabs');
     }
   }
 
@@ -41,21 +40,15 @@ export class NovaSolicitacaoPerguntasPage implements OnInit {
     const result = await this.questionsSrv.getAllQuestions(this.subCategory.uid);
     if (result.success) {
       this.questions = result.data as Array<QuestionModel>;
-
-      const items: any = [];
-
-      this.questions.forEach(q => items.push(
-        this.formBuilder.group({
-          [q.uid]: ['']
-        }))
-      );
-
-      this.form1 = this.formBuilder.group({
-        formArrQuestions: new [items]
-      });
-
-      console.log('questions', items);
     }
+  }
+
+  getOptions(question: QuestionModel) {
+    return question.options.split(',').map(o => o.trim());
+  }
+
+  send() {
+    console.log(this.anserws);
   }
 
 

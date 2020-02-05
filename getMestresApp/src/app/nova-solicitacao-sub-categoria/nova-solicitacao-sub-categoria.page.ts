@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SubCategoryModel } from './../../models/subCategoryModel';
 import { CategoryModel } from './../../models/categoryModel';
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-nova-solicitacao-sub-categoria',
@@ -16,7 +17,8 @@ export class NovaSolicitacaoSubCategoriaPage implements OnInit {
 
   constructor(
     private router: Router,
-    private subCategorySrv: SubCategoryService
+    private subCategorySrv: SubCategoryService,
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
@@ -26,10 +28,10 @@ export class NovaSolicitacaoSubCategoriaPage implements OnInit {
         this.category = extras.state as CategoryModel;
         this.loadData();
       } else {
-        this.router.navigateByUrl('/tabs');
+        this.navCtrl.navigateRoot('/tabs');
       }
     } catch (error) {
-      this.router.navigateByUrl('/tabs');
+      this.navCtrl.navigateRoot('/tabs');
     }
   }
 
