@@ -1,13 +1,43 @@
 import { Request } from 'express';
 import { BaseController } from "./BaseController";
-import * as md5 from 'md5';
 import { ServiceProvider } from '../entity/ServiceProvider';
 import { FileHelper } from '../helpers/fileHelper';
+import { sign } from 'jsonwebtoken';
+import config from "../configuration/config";
+import * as md5 from 'md5';
 
 export class ServiceProviderController extends BaseController<ServiceProvider> {
 
   constructor() {
     super(ServiceProvider, true);
+  }
+
+  async auth(request: Request) {
+
+    let { email, password } = request.body;
+    if (!email || !password)
+      return { status: 400, message: 'Informe o email e a senha para efetuar o login' };
+
+    let user = await this.repostitory.findOne({ email: email, password: md5(password) });
+    if (user) {
+      let _payload = {
+        uid: user.uid,
+        name: user.name,
+        photo: user.photo,
+        email: user.email
+      }
+      return {
+        status: 200,
+        message: {
+          user: _payload,
+          token: sign({
+            ..._payload,
+            tm: new Date().getTime()
+          }, config.secretyKey)
+        }
+      }
+    } else
+      return { status: 404, message: 'E-mail ou senha inválidos' }
   }
 
   private validationDefault(_serviceProvider: ServiceProvider): void {

@@ -1,13 +1,43 @@
 import { Request } from 'express';
 import { Customer } from './../entity/Customer';
 import { BaseController } from "./BaseController";
-import * as md5 from 'md5';
 import { FileHelper } from '../helpers/fileHelper';
+import { sign } from 'jsonwebtoken';
+import config from "../configuration/config";
+import * as md5 from 'md5';
 
 export class CustomerController extends BaseController<Customer> {
 
   constructor() {
     super(Customer, true);
+  }
+
+  async auth(request: Request) {
+
+    let { email, password } = request.body;
+    if (!email || !password)
+      return { status: 400, message: 'Informe o email e a senha para efetuar o login' };
+
+    let user = await this.repostitory.findOne({ email: email, password: md5(password) });
+    if (user) {
+      let _payload = {
+        uid: user.uid,
+        name: user.name,
+        photo: user.photo,
+        email: user.email
+      }
+      return {
+        status: 200,
+        message: {
+          user: _payload,
+          token: sign({
+            ..._payload,
+            tm: new Date().getTime()
+          }, config.secretyKey)
+        }
+      }
+    } else
+      return { status: 404, message: 'E-mail ou senha inválidos' }
   }
 
   async one(request: Request) {
@@ -29,7 +59,7 @@ export class CustomerController extends BaseController<Customer> {
       super.isRequired(_customer.password, 'A senha é obrigatório');
       super.isRequired(confirmPassword, 'A confirmação da senha é obrigatório');
       super.isTrue((_customer.password != confirmPassword), 'A senha e a confirmação de senha estão diferentes');
-      
+
     } else {
       delete _customer.password;
     }

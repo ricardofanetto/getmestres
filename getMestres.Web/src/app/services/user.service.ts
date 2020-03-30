@@ -30,8 +30,8 @@ export class UserService extends BaseService<UserModel> {
 
   get isLogged(): Observable<boolean> {
     return this.loginSubject.asObservable();
-
   }
+  
   get isStaticLogged(): boolean {
     return !!localStorage.getItem('getmestres:token');
   }

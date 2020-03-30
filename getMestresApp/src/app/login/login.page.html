@@ -10,8 +10,14 @@
       <ion-input inputmode="email" type="email" [(ngModel)]="userForm.email"></ion-input>
     </ion-item>
     <ion-item lines="none">
-      <ion-label position="stacked" >Senha</ion-label>
+      <ion-label position="stacked">Senha</ion-label>
       <ion-input inputmode="text" type="password" [(ngModel)]="userForm.password"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Tipo de Usuário</ion-label>
+      <ion-select [(ngModel)]="userForm.profile" placeholder="selecione o tipo de login" cancelText="Cancelar">
+        <ion-select-option *ngFor="let item of profiles" [value]="item.value">{{item.label}}</ion-select-option>
+      </ion-select>
     </ion-item>
   </ion-list>
   <div class="ion-padding">
