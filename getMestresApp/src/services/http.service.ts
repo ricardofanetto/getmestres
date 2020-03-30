@@ -1,3 +1,4 @@
+import { Constants } from './../shared/constants';
 import { SpinnerService } from './spinner.service';
 import { AlertService } from './alert.service';
 import { IResultHttp } from './../interfaces/IResultHttp';
@@ -25,7 +26,7 @@ export class HttpService {
     header = header.append('Content-Type', 'application/json');
     header = header.append('Accept', 'application/json');
 
-    const token = localStorage.getItem('getmestres:token');
+    const token = localStorage.getItem(Constants.keyStore.token);
     if (token) {
       header = header.append('x-token-access', token);
     }

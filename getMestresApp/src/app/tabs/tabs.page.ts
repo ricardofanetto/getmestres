@@ -1,3 +1,4 @@
+import { Constants } from './../../shared/constants';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  perfil: string = localStorage.getItem('getmestres:perfil');
+  perfil: string = localStorage.getItem(Constants.keyStore.profile);
 
   constructor() {}
 

@@ -1,5 +1,7 @@
 {
   "name": "getMestresApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
