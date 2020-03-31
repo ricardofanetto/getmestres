@@ -1,4 +1,3 @@
-import { Constants } from '../shared/constants';
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
@@ -23,8 +22,6 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-      localStorage.setItem(Constants.keyStore.profile, 'cliente');
     });
   }
 }

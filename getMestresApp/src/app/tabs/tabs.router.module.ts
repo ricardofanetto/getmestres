@@ -1,9 +1,11 @@
+import { Constants } from './../../shared/constants';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 
-const perfil: string = localStorage.getItem('getmestres:perfil');
+
+const perfil: string = localStorage.getItem(Constants.keyStore.profile);
 
 const routes: Routes = [
   {
@@ -84,14 +86,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: perfil === 'profissional' ? '/tabs/tabDisponiveis' : '/tabs/tabSolicitacoes',
+        redirectTo: perfil === 'serviceProvider' ? '/tabs/tabDisponiveis' : '/tabs/tabSolicitacoes',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: perfil === 'profissional' ? '/tabs/tabDisponiveis' : '/tabs/tabSolicitacoes',
+    redirectTo: perfil === 'serviceProvider' ? '/tabs/tabDisponiveis' : '/tabs/tabSolicitacoes',
     pathMatch: 'full'
   }
 ];

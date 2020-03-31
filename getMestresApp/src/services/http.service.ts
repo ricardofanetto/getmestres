@@ -70,6 +70,9 @@ export class HttpService {
             await this.alertSrv.alert('Atenção', errorsText);
           }
         }
+        if (error.status === 404) {
+          await this.alertSrv.alert('Atenção', error.error);
+        }
         resolve({ success: false, data: {}, error });
       }
     });

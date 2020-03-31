@@ -8,6 +8,6 @@ export class RequestOrderModel {
   description: string;
   statusOrder: RequestStatus;
   customer: UserModel;
-  subCategory: SubCategoryModel;
+  subCategory: SubCategoryModel | string;
   serviceProvider: ServiceProviderModel;
 }

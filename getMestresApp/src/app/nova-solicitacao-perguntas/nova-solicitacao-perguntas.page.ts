@@ -51,8 +51,10 @@ export class NovaSolicitacaoPerguntasPage implements OnInit {
     return question.options.split(',').map(o => o.trim());
   }
 
-  send() {
-    console.log(this.anserws);
+  async send() {
+    const { coords } = await this.geolocation.getCurrentPosition();
+    this.request.longlat = `${coords.longitude};${coords.latitude}`;
+    this.request.subCategory = this.subCategory.uid;
   }
 
 

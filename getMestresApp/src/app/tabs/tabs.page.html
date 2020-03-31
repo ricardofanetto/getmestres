@@ -1,22 +1,22 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom" color="primary">
-    <ion-tab-button tab="tabDisponiveis" *ngIf="perfil === 'profissional'">
+    <ion-tab-button tab="tabDisponiveis" *ngIf="perfil === 'serviceProvider'">
       <ion-icon name="book"></ion-icon>
       <ion-label>Disponíveis</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="tabAceitos" *ngIf="perfil === 'profissional'">
+    <ion-tab-button tab="tabAceitos" *ngIf="perfil === 'serviceProvider'">
       <ion-icon name="checkmark"></ion-icon>
       <ion-label>Aceitos</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="tabConcluidos" *ngIf="perfil === 'profissional'">
+    <ion-tab-button tab="tabConcluidos" *ngIf="perfil === 'serviceProvider'">
       <ion-icon name="copy"></ion-icon>
       <ion-label>Concluídos</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="tabSolicitacoes" *ngIf="perfil === 'cliente'">
+    <ion-tab-button tab="tabSolicitacoes" *ngIf="perfil === 'customer'">
       <ion-icon name="book"></ion-icon>
       <ion-label>Minhas Solicitações</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="tabAtendidas" *ngIf="perfil === 'cliente'">
+    <ion-tab-button tab="tabAtendidas" *ngIf="perfil === 'customer'">
       <ion-icon name="copy"></ion-icon>
       <ion-label>Atendidas</ion-label>
     </ion-tab-button>

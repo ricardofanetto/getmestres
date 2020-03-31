@@ -6,6 +6,8 @@ export default {
   publicRoutes: process.env.PUBLICROUTES || [
     'users/create',
     'users/auth', 
+    'customer/auth', 
+    'serviceProvider/auth', 
     'customer/create', 
     'storage', 
     'address'
