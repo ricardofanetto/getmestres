@@ -24,7 +24,8 @@ export class CustomerController extends BaseController<Customer> {
         uid: user.uid,
         name: user.name,
         photo: user.photo,
-        email: user.email
+        email: user.email, 
+        origin: 'Customer'
       }
       return {
         status: 200,

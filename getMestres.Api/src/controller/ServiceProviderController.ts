@@ -24,7 +24,8 @@ export class ServiceProviderController extends BaseController<ServiceProvider> {
         uid: user.uid,
         name: user.name,
         photo: user.photo,
-        email: user.email
+        email: user.email, 
+        origin: 'ServiceProvider'
       }
       return {
         status: 200,

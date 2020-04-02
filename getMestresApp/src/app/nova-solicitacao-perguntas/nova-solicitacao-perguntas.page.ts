@@ -1,3 +1,4 @@
+import { OrderService } from './../../services/order.service';
 import { RequestOrderModel } from './../../models/requestOrderModel';
 import { QuestionsService } from './../../services/questions.service';
 import { SubCategoryModel } from './../../models/subCategoryModel';
@@ -16,14 +17,15 @@ export class NovaSolicitacaoPerguntasPage implements OnInit {
 
   subCategory: SubCategoryModel = new SubCategoryModel();
   questions: Array<QuestionModel> = new Array<QuestionModel>();
-  anserws: any = [];
+  anserws: any = {};
   request: RequestOrderModel = new RequestOrderModel();
 
   constructor(
     private router: Router,
     private questionsSrv: QuestionsService,
     private navCtrl: NavController,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private orderSv: OrderService
   ) { }
 
   ngOnInit() {
@@ -52,11 +54,25 @@ export class NovaSolicitacaoPerguntasPage implements OnInit {
   }
 
   async send() {
-    const { coords } = await this.geolocation.getCurrentPosition();
-    this.request.longlat = `${coords.longitude};${coords.latitude}`;
-    this.request.subCategory = this.subCategory.uid;
+    try {
+      const { coords } = await this.geolocation.getCurrentPosition();
+      this.request.longlat = `${coords.longitude};${coords.latitude}`;
+      this.request.subCategory = this.subCategory.uid;
+      const { success, data } = await this.orderSv.post(this.request);
+      if (success) {
+        // tslint:disable-next-line: forin
+        for (const key in this.anserws) {
+          await this.orderSv.sendAnwser({
+            answer: this.anserws[key],
+            question: key,
+            requestOrder: data.uid
+          });
+        }
+      }
+    } catch (error) {
+      console.log('error', error);
+    }
   }
-
-
-
 }
+
+

@@ -20,13 +20,13 @@ export class RequestOrderAnswerController extends BaseController<RequestOrderAns
   }
 
   async save(request: Request) {
-    let _request = <RequestOrderAnswer>request.body;
+    let answers = <RequestOrderAnswer>request.body;
 
-    super.isRequired(_request.answer, 'Informe a resposta da pergunta');
-    super.isRequired(_request.question, 'A questão precisa ser informada');
-    super.isRequired(_request.requestOrder, 'Informe a requisição');
+    super.isRequired(answers.answer, 'Informe a resposta da pergunta');
+    super.isRequired(answers.question, 'A questão precisa ser informada');
+    super.isRequired(answers.requestOrder, 'Informe a requisição');
 
-    return super.save(_request, request);
+    return super.save(answers, request);
   }
 
 }

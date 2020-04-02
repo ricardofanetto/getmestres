@@ -2,6 +2,7 @@ import { Request } from 'express';
 import { BaseController } from "./BaseController";
 import { RequestOrder } from '../entity/RequestOrder';
 import { RequestStatus } from '../entity/enum/RequestStatus';
+import { Customer } from '../entity/Customer';
 
 export class RequestOrderController extends BaseController<RequestOrder> {
 
@@ -10,17 +11,19 @@ export class RequestOrderController extends BaseController<RequestOrder> {
   }
 
   async save(request: Request) {
-    let _request = <RequestOrder>request.body;
-    _request.customer.uid = request.userAuth.uid;
+    const order = <RequestOrder>request.body;
 
-    super.isRequired(_request.title, 'Informe o título do seu pedido');
-    super.isRequired(_request.description, 'Informe o que precisa');
-    super.isRequired(_request.longlat, 'Preciso saber onde você está');
-    super.isRequired(_request.subCategory, 'Informe a subCategoria do pedido');
+    order.customer = new Customer();
+    order.customer.uid = request.userAuth.uid;
 
-    if (!_request.uid)
-      _request.statusOrder = RequestStatus.pending
-    return super.save(_request, request);
+    super.isRequired(order.title, 'Informe o título do seu pedido');
+    super.isRequired(order.description, 'Informe o que precisa');
+    super.isRequired(order.longlat, 'Preciso saber onde você está');
+    super.isRequired(order.subCategory, 'Informe a subCategoria do pedido');
+
+    if (!order.uid)
+      order.statusOrder = RequestStatus.pending
+    return super.save(order, request);
   }
 
 }
