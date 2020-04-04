@@ -1,3 +1,4 @@
+import { RequestOrder } from './../entity/RequestOrder';
 import { Request } from 'express';
 import { Customer } from './../entity/Customer';
 import { BaseController } from "./BaseController";
@@ -5,11 +6,27 @@ import { FileHelper } from '../helpers/fileHelper';
 import { sign } from 'jsonwebtoken';
 import config from "../configuration/config";
 import * as md5 from 'md5';
+import { getRepository, In } from 'typeorm';
 
 export class CustomerController extends BaseController<Customer> {
 
+  private _requestOrder = getRepository(RequestOrder);
+
   constructor() {
     super(Customer, true);
+  }
+
+  async getMyAllOrders(request: Request) {
+    const { status } = request.query;
+    const where = {
+      customer: request.userAuth.uid,
+      deleted: false,
+      statusOrder: In(!status ? [1, 2] : [status])
+    }
+
+    return this._requestOrder.find({
+      where
+    })
   }
 
   async auth(request: Request) {
@@ -24,7 +41,7 @@ export class CustomerController extends BaseController<Customer> {
         uid: user.uid,
         name: user.name,
         photo: user.photo,
-        email: user.email, 
+        email: user.email,
         origin: 'Customer'
       }
       return {
@@ -70,6 +87,9 @@ export class CustomerController extends BaseController<Customer> {
       if (pictureCreatedResult)
         _customer.photo = pictureCreatedResult
     }
+
+    if (_customer.password)
+      _customer.password = md5(_customer.password);
 
     return super.save(_customer, request);
 

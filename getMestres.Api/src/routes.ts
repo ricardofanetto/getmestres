@@ -35,6 +35,7 @@ export const Routes = [
     { method: "delete", route: "/question/:id", controller: QuestionController, action: "remove" }, 
 
     { method: "get", route: "/customer", controller: CustomerController, action: "all" },
+    { method: "get", route: "/customer/my/orders", controller: CustomerController, action: "getMyAllOrders" },
     { method: "get", route: "/customer/:id", controller: CustomerController, action: "one" },
     { method: "post", route: "/customer/auth", controller: CustomerController, action: "auth" },
     { method: "post", route: "/customer", controller: CustomerController, action: "save" },

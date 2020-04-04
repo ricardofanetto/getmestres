@@ -10,12 +10,13 @@ export class RequestOrderAnswerController extends BaseController<RequestOrderAns
 
   async all(request: Request) {
     let { orderUid } = request.params
-    
     if (!orderUid)
       return { status: 400, message: 'Informe o código da requisiçao' }
 
-    this.repostitory.find({
-      requestOrder: orderUid
+    return this.repostitory.find({
+      where: {
+        requestOrder: orderUid
+      }
     })
   }
 

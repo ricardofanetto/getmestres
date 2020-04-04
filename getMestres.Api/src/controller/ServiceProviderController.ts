@@ -24,7 +24,7 @@ export class ServiceProviderController extends BaseController<ServiceProvider> {
         uid: user.uid,
         name: user.name,
         photo: user.photo,
-        email: user.email, 
+        email: user.email,
         origin: 'ServiceProvider'
       }
       return {
@@ -68,13 +68,12 @@ export class ServiceProviderController extends BaseController<ServiceProvider> {
       super.isRequired(_serviceProvider.password, 'A senha é obrigatório');
       super.isRequired(confirmPassword, 'A confirmação da senha é obrigatório');
       super.isTrue((_serviceProvider.password != confirmPassword), 'A senha e a confirmação de senha estão diferentes');
-
+      _serviceProvider.password = md5(_serviceProvider.password);
     } else {
       delete _serviceProvider.password;
     }
 
     return super.save(_serviceProvider, request);
-
   }
 
   async createServiceProvider(request: Request) {

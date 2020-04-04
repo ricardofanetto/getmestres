@@ -1,3 +1,5 @@
+import { IOrders } from './../../interfaces/IOrders';
+import { OrderService } from './../../services/order.service';
 import { RequestOrderModel } from './../../models/requestOrderModel';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,11 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SolicitacoesPage implements OnInit {
 
-  list: Array<RequestOrderModel> = new Array<RequestOrderModel>();
-  
-  constructor() { }
+  list: IOrders[] = [];
+
+  constructor(
+    private orderSrv: OrderService
+  ) { }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  async loadData() {
+    const { success, data } = await this.orderSrv.customerGetMyOrders();
+    if (success) {
+      this.list = data as IOrders[];
+    }
   }
 
 }

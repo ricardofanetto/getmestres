@@ -71,7 +71,12 @@ const routes: Routes = [
             path: 'nova-solicitacao-perguntas',
             loadChildren: () => import('../nova-solicitacao-perguntas/nova-solicitacao-perguntas.module')
               .then(m => m.NovaSolicitacaoPerguntasPageModule)
-          }
+          },
+          {
+            path: 'visualizar-minha-solicitacao/:id',
+            loadChildren: () => import('../visualizar-minha-solicitacao/visualizar-minha-solicitacao.module')
+              .then(m => m.VisualizarMinhaSolicitacaoPageModule)
+          },
         ]
       },
       {
