@@ -6,6 +6,7 @@ import { environment } from '../environments/environment';
 import { HttpService } from './http.service';
 import { Injectable } from '@angular/core';
 import { IUser } from '../interfaces/IUser';
+import { BaseService } from './base.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -15,7 +16,9 @@ export class UserService {
 
   constructor(
     public http: HttpService
-  ) { }
+  ) {
+
+  }
 
   login(user: UserAuthModel) {
     return this.http.post(`${environment.url_api}/${

@@ -59,7 +59,9 @@ export class CustomerController extends BaseController<Customer> {
   }
 
   async one(request: Request) {
-    const costumer = await super.one(request);
+    const uid = request.params.id as string;
+    const userId = request.userAuth.uid;
+    const costumer = await super.one(request, uid === userId);
     delete costumer['password'];
     return costumer;
   }

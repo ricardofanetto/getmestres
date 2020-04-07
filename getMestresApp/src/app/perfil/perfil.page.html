@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar class="ion-text-center" color="primary">
     <ion-title>Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()">
+        Salvar
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <ion-list>
+    <div class="photo-container">
+      <img (click)="openLibraryPictures()"
+        [src]="form.photo || 'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'" />
+    </div>
+    <ion-item lines="none">
+      <ion-label position="stacked">Nome</ion-label>
+      <ion-input inputmode="text" type="text" placeholder="João Pedro" [(ngModel)]="form.name"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">E-mail</ion-label>
+      <ion-input inputmode="email" type="email" placeholder="joao@mail.com" [(ngModel)]="form.email"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Telefone</ion-label>
+      <ion-input inputmode="text" [brmasker]="{phone: true}" placeholder="(00) 00000-0000" type="text"
+        [(ngModel)]="form.phone"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div class="ion-padding">
+    <ion-button (click)="changePassword()" expand="block" fill="clear">
+      Trocar Senha
+    </ion-button>
+  </div>
 </ion-content>

@@ -30,8 +30,8 @@ export abstract class BaseController<T> extends BaseNotification {
     });
   }
 
-  async one(request: Request) {
-    if (this.checkNotPermission(request)) return this.errorRoot;
+  async one(request: Request, ignorePermissions: boolean = false) {
+    if (!ignorePermissions) { if (this.checkNotPermission(request)) return this.errorRoot };
     const uid = request.params.id as string;
     return this._repository.findOne(uid);
   }
