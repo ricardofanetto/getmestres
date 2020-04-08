@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { CustomerService } from '../../services/customer.service';
 import { Component, OnInit } from '@angular/core';
 import { CustomerModel } from '../../models/customerModel';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-perfil',
@@ -41,25 +42,51 @@ export class PerfilPage implements OnInit {
     const { success, data } = await this.customerSrv.GetById(this.userSrv.UserData.uid);
     if (success) {
       this.form = data as CustomerModel;
+      this.fixPathPhoto();
     }
   }
 
-  save() {
+  fixPathPhoto() {
+    if (this.form.photo) {
+      this.form.photo = `${environment.url_api}/storage/${this.form.photo}`;
+    }
+  }
 
+  async save() {
+    const { success, data } = await this.customerSrv.post(this.form);
+    if (success) {
+      this.form = data;
+      this.fixPathPhoto();
+      this.alertSrv.toast('Perfil atualizado com sucesso!');
+    }
+  }
+
+
+  async changePasswordHandle(currentPassword: string, newPassword: string, confirmNewPassword: string) {
+    const { success } = await this.customerSrv.changePassword(currentPassword, newPassword, confirmNewPassword);
+    if (success) {
+      this.alertSrv.toast('Senha alterada com sucesso');
+    }
   }
 
   async changePassword() {
     (
       await this.alertCtrl.create({
         header: 'Trocar Senha',
-        inputs: [{ placeholder: 'Digite a nova senha', type: 'password', name: 'inputPassword' }],
+        inputs: [
+          { placeholder: 'Digite sua senha atual', type: 'password', name: 'currentPassword' },
+          { placeholder: 'Digite a nova senha', type: 'password', name: 'newPassword' },
+          { placeholder: 'Digite a confirmação senha', type: 'password', name: 'confirmNewPassword' }
+        ],
         buttons: [
           { text: 'Cancelar', handler: () => { } },
           {
-            text: 'Salvar', handler: ({ inputPassword }) => {
-              if (!inputPassword) {
-                this.alertSrv.toast('Digite a nova senha antes de continuar!');
+            text: 'Salvar', handler: ({ currentPassword, newPassword, confirmNewPassword }) => {
+              if (!newPassword || !confirmNewPassword || !currentPassword) {
+                this.alertSrv.toast('Digite todas as informações antes de continuar!');
                 return false;
+              } else {
+                this.changePasswordHandle(currentPassword, newPassword, confirmNewPassword);
               }
             }
           }

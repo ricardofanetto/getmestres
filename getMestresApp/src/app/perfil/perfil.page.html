@@ -12,7 +12,7 @@
   <ion-list>
     <div class="photo-container">
       <img (click)="openLibraryPictures()"
-        [src]="form.photo || 'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'" />
+        [src]="!!form.photo ? form.photo : 'assets/no-picture.png'" />
     </div>
     <ion-item lines="none">
       <ion-label position="stacked">Nome</ion-label>

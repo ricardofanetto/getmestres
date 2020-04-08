@@ -37,9 +37,8 @@ export abstract class BaseController<T> extends BaseNotification {
   }
 
   async save(model: any, request: Request, ignorePermissions: boolean = false) {
-
-    if (!ignorePermissions)
-      if (this.checkNotPermission(request)) return this.errorRoot;
+    console.log('ignore', ignorePermissions);
+    if (!ignorePermissions) { if (this.checkNotPermission(request)) return this.errorRoot };
 
     if (model.uid) {
 

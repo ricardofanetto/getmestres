@@ -12,4 +12,8 @@ export class CustomerService extends BaseService<CustomerModel> {
     super('customer', http);
   }
 
+  changePassword(currentPassword: string, newPassword: string, confirmNewPassword: string) {
+    return this.http.post(`${this.urlBase}/changepassword`, { currentPassword, newPassword, confirmNewPassword });
+  }
+
 }

@@ -59,16 +59,41 @@ export class CustomerController extends BaseController<Customer> {
   }
 
   async one(request: Request) {
-    const uid = request.params.id as string;
-    const userId = request.userAuth.uid;
-    const costumer = await super.one(request, uid === userId);
+    const costumer = await super.one(request, this.isMe(request));
     delete costumer['password'];
     return costumer;
   }
 
+  async changePassword(request: Request) {
+    const userId = request.userAuth.uid;
+    const { currentPassword, newPassword, confirmNewPassword } = request.body;
+
+    this.isRequired(currentPassword, 'A senha atual é obrigatória');
+    this.isRequired(newPassword, 'A nova senha é obrigatória');
+    this.isRequired(confirmNewPassword, 'A confirmação da nova senha é obrigatória');
+    this.isTrue(newPassword !== confirmNewPassword, 'A senha e a confirmação de senha não são iguais');
+
+    if (!this.valid())
+      return {
+        status: 400,
+        errors: this.allNotifications
+      }
+
+    const customer = await this.repostitory.findOne({ where: { uid: userId } });
+    if (customer) {
+
+      if (customer.password !== md5(currentPassword))
+        return { status: 400, message: 'A senha atual informada é inválida' };
+
+      customer.password = md5(newPassword);
+      this.repostitory.save(customer);
+    } else
+      return { status: 404, message: 'Usuario não encontrado' };
+  }
+
   async save(request: Request) {
-    let _customer = <Customer>request.body;
-    let { confirmPassword } = request.body;
+    const _customer = <Customer>request.body;
+    const { confirmPassword } = request.body;
 
     super.isRequired(_customer.name, 'O nome é obrigatório');
     super.isRequired(_customer.photo, 'A foto é obrigatória');
@@ -93,7 +118,7 @@ export class CustomerController extends BaseController<Customer> {
     if (_customer.password)
       _customer.password = md5(_customer.password);
 
-    return super.save(_customer, request);
+    return super.save(_customer, request, this.isMe(request));
 
   }
 
@@ -119,6 +144,17 @@ export class CustomerController extends BaseController<Customer> {
       _customer.password = md5(_customer.password);
 
     return super.save(_customer, request, true);
+  }
+
+  isMe(request: Request): boolean {
+    try {
+      const uid = request.params.id as string;
+      const uidBody = request.body.uid;
+      const userId = request.userAuth.uid;
+      return (uid === userId || uidBody === userId);
+    } catch (error) {
+      return false;
+    }
   }
 
 }
