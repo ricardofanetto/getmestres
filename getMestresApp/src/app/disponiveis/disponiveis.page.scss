@@ -1,0 +1,25 @@
+ion-content {
+  --background: var(--ion-color-tertiary);
+}
+ion-fab {
+  margin-top: 17px;
+}
+
+ion-card {
+  --background: linear-gradient(to bottom, #fcfcfc 0%,#e4e4e4 100%);
+  margin: 20px;
+  padding: 10px;
+  ion-card-title {
+    font-size: 1.2rem;
+    line-height: 30px;
+  }
+  ion-card-subtitle {
+    line-height: 20px;
+    color: var(--ion-color-primary);
+  }
+  ion-card-content {
+    padding-inline-start: 0px;
+    padding-inline-end: 0px;
+    text-transform: uppercase;
+  }
+}

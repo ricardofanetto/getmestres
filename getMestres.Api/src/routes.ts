@@ -44,6 +44,7 @@ export const Routes = [
     { method: "delete", route: "/customer/:id", controller: CustomerController, action: "remove" },
     
     { method: "get", route: "/serviceProvider", controller: ServiceProviderController, action: "all" },
+    { method: "get", route: "/serviceProvider/orders/availables", controller: ServiceProviderController, action: "getAllOrdersAvailables" },
     { method: "get", route: "/serviceProvider/:id", controller: ServiceProviderController, action: "one" },
     { method: "post", route: "/serviceProvider", controller: ServiceProviderController, action: "save" },
     { method: "post", route: "/serviceProvider/auth", controller: ServiceProviderController, action: "auth" },

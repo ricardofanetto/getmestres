@@ -21,6 +21,11 @@ export class OrderService extends BaseService<RequestOrderModel>  {
   customerGetMyOrders() {
     return this.http.get(`${environment.url_api}/customer/my/orders`);
   }
+
+  getOrdersAvailable() {
+    return this.http.get(`${environment.url_api}/serviceprovider/orders/availables`);
+  }
+
   getAllAnwsers(orderUid: string) {
     return this.http.get(`${environment.url_api}/requestAnswer/${orderUid}/all`);
   }

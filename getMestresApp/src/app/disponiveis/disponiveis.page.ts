@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IOrders } from '../../interfaces/IOrders';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-disponiveis',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisponiveisPage implements OnInit {
 
-  constructor() { }
+  list: IOrders[] = [];
+
+  constructor(
+    private orderSrv: OrderService
+  ) { }
 
   ngOnInit() {
+    this.loadData();
+  }
+
+  async loadData() {
+    const { success, data } = await this.orderSrv.getOrdersAvailable();
+    if (success) {
+      this.list = data as IOrders[];
+    }
   }
 
 }

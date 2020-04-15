@@ -1,3 +1,4 @@
+import { SubCategory } from './../entity/SubCategory';
 import { Request } from 'express';
 import { BaseController } from "./BaseController";
 import { ServiceProvider } from '../entity/ServiceProvider';
@@ -5,12 +6,42 @@ import { FileHelper } from '../helpers/fileHelper';
 import { sign } from 'jsonwebtoken';
 import config from "../configuration/config";
 import * as md5 from 'md5';
+import { getRepository, In } from 'typeorm';
+import { RequestOrder } from '../entity/RequestOrder';
 
 export class ServiceProviderController extends BaseController<ServiceProvider> {
+
+  private _requestOrder = getRepository(RequestOrder);
+  private _subCategorys = getRepository(SubCategory);
 
   constructor() {
     super(ServiceProvider, true);
   }
+
+
+  async getAllOrdersAvailables(request: Request) {
+    const { status } = request.query;
+    const where = {
+      deleted: false,
+      statusOrder: In(!status ? [1, 2] : [status])
+    }
+
+    const myData = await this.repostitory.findOne(request.userAuth.uid);
+    const categories = myData.categoriesCare.split(',').map(c => c.trim());
+
+    const subCategories = await this._subCategorys.find({
+      where: { name: In(categories) }
+    });
+
+    if (Array.isArray(subCategories)) {
+      where['subCategory'] = In(subCategories.map(s => s.uid))
+    }
+    
+    return this._requestOrder.find({
+      where
+    })
+  }
+
 
   async auth(request: Request) {
 

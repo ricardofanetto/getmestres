@@ -96,4 +96,8 @@ export class PerfilPage implements OnInit {
 
   }
 
+  logout() {
+    this.userSrv.logout();
+  }
+
 }

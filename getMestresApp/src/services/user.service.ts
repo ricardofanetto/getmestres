@@ -7,6 +7,7 @@ import { HttpService } from './http.service';
 import { Injectable } from '@angular/core';
 import { IUser } from '../interfaces/IUser';
 import { BaseService } from './base.service';
+import { NavController } from '@ionic/angular';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -15,7 +16,8 @@ export class UserService {
   private subUserData: Subject<IUser> = new Subject<IUser>();
 
   constructor(
-    public http: HttpService
+    public http: HttpService, 
+    private navCtrl: NavController
   ) {
 
   }
@@ -32,6 +34,13 @@ export class UserService {
     localStorage.setItem(Constants.keyStore.profile, profile);
     this.subUserData.next(this.UserData);
     this.subProfile.next(profile);
+  }
+
+  logout() {
+    localStorage.removeItem(Constants.keyStore.user);
+    localStorage.removeItem(Constants.keyStore.token);
+    localStorage.removeItem(Constants.keyStore.profile);
+    this.navCtrl.navigateRoot('/login');
   }
 
   get IsAuth(): boolean {

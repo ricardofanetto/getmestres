@@ -11,9 +11,11 @@
 <ion-content>
   <ion-list>
     <div class="photo-container">
-      <img (click)="openLibraryPictures()"
-        [src]="!!form.photo ? form.photo : 'assets/no-picture.png'" />
+      <img (click)="openLibraryPictures()" [src]="!!form.photo ? form.photo : 'assets/no-picture.png'" />
     </div>
+    <ion-item-divider>
+      <ion-label>Dados do usuário</ion-label>
+    </ion-item-divider>
     <ion-item lines="none">
       <ion-label position="stacked">Nome</ion-label>
       <ion-input inputmode="text" type="text" placeholder="João Pedro" [(ngModel)]="form.name"></ion-input>
@@ -28,9 +30,15 @@
         [(ngModel)]="form.phone"></ion-input>
     </ion-item>
   </ion-list>
-  <div class="ion-padding">
-    <ion-button (click)="changePassword()" expand="block" fill="clear">
-      Trocar Senha
-    </ion-button>
-  </div>
+  <ion-list lines="none">
+    <ion-item-divider>
+      <ion-label>Aplicativo</ion-label>
+    </ion-item-divider>
+    <ion-item (click)="changePassword()">
+      <ion-label>Trocar Senha</ion-label>
+    </ion-item>
+    <ion-item (click)="logout()">
+      <ion-label>Logout</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -38,7 +38,7 @@ export class HttpService {
     const header = this.createHeader();
     return new Promise(async (resolve) => {
       try {
-        await this.spinnerSrv.Show();
+        // await this.spinnerSrv.Show();
         const res = await this.http.get(url, { headers: header }).toPromise();
         resolve({ success: true, data: res, error: undefined });
         await this.spinnerSrv.Hide();
