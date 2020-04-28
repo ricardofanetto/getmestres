@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let request of list">
+  <ion-card *ngFor="let request of list" [routerLink]="['/tabs/tabDisponiveis/visualizar-solicitacao', request.uid]">
     <ion-card-title>
       {{ request.title }}
     </ion-card-title>

@@ -18,6 +18,11 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('../disponiveis/disponiveis.module').then(m => m.DisponiveisPageModule)
+          },
+          {
+            path: 'visualizar-solicitacao/:id',
+            loadChildren: () => import('../visualizar-solicitacao/visualizar-solicitacao.module')
+              .then(m => m.VisualizarSolicitacaoPageModule)
           }
         ]
       },
