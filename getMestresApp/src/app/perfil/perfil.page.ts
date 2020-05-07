@@ -1,3 +1,4 @@
+import { ServiceProviderService } from './../../services/serviceProvider.service';
 import { CameraService } from './../../services/camera.service';
 import { AlertService } from './../../services/alert.service';
 import { AlertController } from '@ionic/angular';
@@ -6,6 +7,7 @@ import { CustomerService } from '../../services/customer.service';
 import { Component, OnInit } from '@angular/core';
 import { CustomerModel } from '../../models/customerModel';
 import { environment } from '../../environments/environment';
+import { ServiceProviderModel } from '../../models/serviceProviderModel';
 
 @Component({
   selector: 'app-perfil',
@@ -19,6 +21,7 @@ export class PerfilPage implements OnInit {
 
   constructor(
     private customerSrv: CustomerService,
+    private serviceProviderSrv: ServiceProviderService,
     private userSrv: UserService,
     private alertCtrl: AlertController,
     private alertSrv: AlertService,
@@ -39,9 +42,16 @@ export class PerfilPage implements OnInit {
   }
 
   async loadData() {
-    const { success, data } = await this.customerSrv.GetById(this.userSrv.UserData.uid);
-    if (success) {
-      this.form = data as CustomerModel;
+    let result: any;
+    if (this.userSrv.Profile === 'customer') {
+      result = await this.customerSrv.GetById(this.userSrv.UserData.uid);
+    } else {
+      result = await this.serviceProviderSrv.GetById(this.userSrv.UserData.uid);
+    }
+    if (result.success) {
+      this.form = this.userSrv.Profile === 'customer' ?
+        result.data as CustomerModel :
+        result.data as ServiceProviderModel;
       this.fixPathPhoto();
     }
   }

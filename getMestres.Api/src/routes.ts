@@ -45,6 +45,7 @@ export const Routes = [
     
     { method: "get", route: "/serviceProvider", controller: ServiceProviderController, action: "all" },
     { method: "get", route: "/serviceProvider/orders/availables", controller: ServiceProviderController, action: "getAllOrdersAvailables" },
+    { method: "get", route: "/serviceProvider/orders/my", controller: ServiceProviderController, action: "getMyOrders" },
     { method: "get", route: "/serviceProvider/:id", controller: ServiceProviderController, action: "one" },
     { method: "post", route: "/serviceProvider", controller: ServiceProviderController, action: "save" },
     { method: "post", route: "/serviceProvider/auth", controller: ServiceProviderController, action: "auth" },
@@ -54,6 +55,8 @@ export const Routes = [
     { method: "get", route: "/request", controller: RequestOrderController, action: "all" },
     { method: "get", route: "/request/:id", controller: RequestOrderController, action: "one" },
     { method: "post", route: "/request", controller: RequestOrderController, action: "save" },
+    { method: "put", route: "/request/:id/accept", controller: RequestOrderController, action: "accept" },
+    { method: "put", route: "/request/:id/done", controller: RequestOrderController, action: "done" },
     { method: "delete", route: "/request/:id", controller: RequestOrderController, action: "remove" },
 
     { method: "get", route: "/requestAnswer/:orderUid/all", controller: RequestOrderAnswerController, action: "all" },

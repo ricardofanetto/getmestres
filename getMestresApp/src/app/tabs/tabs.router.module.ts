@@ -33,6 +33,11 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../aceitos/aceitos.module').then(m => m.AceitosPageModule)
+          },
+          {
+            path: 'visualizar-solicitacao/:id',
+            loadChildren: () => import('../visualizar-solicitacao/visualizar-solicitacao.module')
+              .then(m => m.VisualizarSolicitacaoPageModule)
           }
         ]
       },
@@ -43,6 +48,11 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../concluidos/concluidos.module').then(m => m.ConcluidosPageModule)
+          },
+          {
+            path: 'visualizar-solicitacao/:id',
+            loadChildren: () => import('../visualizar-solicitacao/visualizar-solicitacao.module')
+              .then(m => m.VisualizarSolicitacaoPageModule)
           }
         ]
       },

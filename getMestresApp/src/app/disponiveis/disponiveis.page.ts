@@ -15,7 +15,7 @@ export class DisponiveisPage implements OnInit {
     private orderSrv: OrderService
   ) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.loadData();
   }
 

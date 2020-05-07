@@ -42,4 +42,14 @@
       </ion-label>
     </ion-item>
   </ion-list>
+  <div class="ion-padding" *ngIf="view === 'disponiveis' && order?.statusOrder === 1">
+    <ion-button (click)="accept()" expand="block" fill="solid">
+      Aceitar
+    </ion-button>
+  </div>
+  <div class="ion-padding" *ngIf="order?.statusOrder === 2">
+    <ion-button color="secondary" (click)="done()" expand="block" fill="solid">
+      Finalizar
+    </ion-button>
+  </div>
 </ion-content>

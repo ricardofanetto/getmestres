@@ -1,8 +1,10 @@
+import { AlertService } from './../../services/alert.service';
 import { Component, OnInit } from '@angular/core';
 import { IOrders } from '../../interfaces/IOrders';
 import { IOrderAnwsers } from '../../interfaces/IOrderAnwsers';
 import { ActivatedRoute } from '@angular/router';
 import { OrderService } from '../../services/order.service';
+import { NavController } from '@ionic/angular';
 
 declare var google;
 
@@ -16,14 +18,18 @@ export class VisualizarSolicitacaoPage implements OnInit {
   order: IOrders;
   anwsers: IOrderAnwsers[] = [];
   map;
+  view: string;
 
   constructor(
     private active: ActivatedRoute,
-    private orderSrv: OrderService
+    private orderSrv: OrderService,
+    private alertSrv: AlertService,
+    private navCtrl: NavController
   ) { }
 
   ngOnInit() {
     this.active.params.subscribe(p => this.getOrder(p.id));
+    this.active.queryParams.subscribe(p => this.view = p['view'] || 'disponives');
   }
 
   async getOrder(uid: string) {
@@ -55,6 +61,22 @@ export class VisualizarSolicitacaoPage implements OnInit {
         map: this.map
       });
     }, 1000);
+  }
+
+  async accept() {
+    const { success, data } = await this.orderSrv.accpet(this.order.uid);
+    if (success) {
+      this.alertSrv.toast(data.message);
+      this.navCtrl.pop();
+    }
+  }
+
+  async done() {
+    const { success, data } = await this.orderSrv.done(this.order.uid);
+    if (success) {
+      this.alertSrv.toast(data.message);
+      this.navCtrl.pop();
+    }
   }
 
 }

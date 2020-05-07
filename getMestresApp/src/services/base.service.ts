@@ -24,6 +24,10 @@ export abstract class BaseService<T> {
     return this.http.post(this.urlBase, model);
   }
 
+  public put(model: T, uid: string): Promise<IResultHttp> {
+    return this.http.put(`${this.urlBase}/${uid}`, model);
+  }
+
   public delete(uid: string): Promise<IResultHttp> {
     return this.http.delete(`${this.urlBase}/${uid}`);
   }

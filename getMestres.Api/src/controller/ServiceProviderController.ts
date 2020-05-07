@@ -8,6 +8,7 @@ import config from "../configuration/config";
 import * as md5 from 'md5';
 import { getRepository, In } from 'typeorm';
 import { RequestOrder } from '../entity/RequestOrder';
+import { RequestStatus } from '../entity/enum/RequestStatus';
 
 export class ServiceProviderController extends BaseController<ServiceProvider> {
 
@@ -23,7 +24,7 @@ export class ServiceProviderController extends BaseController<ServiceProvider> {
     const { status } = request.query;
     const where = {
       deleted: false,
-      statusOrder: In(!status ? [1, 2] : [status])
+      statusOrder: In(!status ? [1] : [status])
     }
 
     const myData = await this.repostitory.findOne(request.userAuth.uid);
@@ -36,9 +37,20 @@ export class ServiceProviderController extends BaseController<ServiceProvider> {
     if (Array.isArray(subCategories)) {
       where['subCategory'] = In(subCategories.map(s => s.uid))
     }
-    
+
     return this._requestOrder.find({
       where
+    })
+  }
+
+  async getMyOrders(request: Request) {
+    const { status } = request.query;
+    return this._requestOrder.find({
+      where: {
+        deleted: false,
+        serviceProvider: request.userAuth.uid,
+        statusOrder: status ? status : RequestStatus.accepted
+      }
     })
   }
 

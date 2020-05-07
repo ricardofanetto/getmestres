@@ -1,13 +1,28 @@
 <ion-header>
   <ion-toolbar class="ion-text-center" color="primary">
-    <ion-title>Concluídos</ion-title>
+    <ion-title>Solicitações Disponiveis</ion-title>
   </ion-toolbar>
   <ion-toolbar class="ion-text-center" color="primary">
-    <ion-title></ion-title>
+    <ion-title>2000 moedas</ion-title>
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content>
-
+  <ion-card *ngFor="let request of list" [routerLink]="['/tabs/tabConcluidos/visualizar-solicitacao', request.uid]"
+    [queryParams]=" { view: 'concluidos'  }">
+    <ion-card-title>
+      {{ request.title }}
+    </ion-card-title>
+    <ion-card-subtitle>
+      Categoria: {{ request.subCategory.name }}
+    </ion-card-subtitle>
+    <ion-card-content>
+      {{ request.description | truncate:50 }}
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="list.length === 0">
+    <ion-card-content>
+      Você não tem nenhuma solicitação disponível no momento, aguarde em breve chegara novas solicitações :D
+    </ion-card-content>
+  </ion-card>
 </ion-content>
