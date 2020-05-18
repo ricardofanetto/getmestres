@@ -8,7 +8,7 @@ import { RequestStatus } from '../../models/enums/RequestStatus';
   templateUrl: './concluidos.page.html',
   styleUrls: ['./concluidos.page.scss'],
 })
-export class ConcluidosPage implements OnInit {
+export class ConcluidosPage {
 
   list: IOrders[] = [];
 

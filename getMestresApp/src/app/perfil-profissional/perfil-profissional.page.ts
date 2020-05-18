@@ -1,32 +1,38 @@
+import { IAddressState } from './../../interfaces/IAddressState';
+import { AddressService } from './../../services/address.service';
 import { ServiceProviderService } from './../../services/serviceProvider.service';
-import { CameraService } from './../../services/camera.service';
-import { AlertService } from './../../services/alert.service';
+import { UserService } from './../../services/user.service';
 import { AlertController } from '@ionic/angular';
-import { UserService } from '../../services/user.service';
-import { CustomerService } from '../../services/customer.service';
+import { CameraService } from './../../services/camera.service';
 import { Component } from '@angular/core';
-import { CustomerModel } from '../../models/customerModel';
+import { ServiceProviderModel } from '../../models/serviceProviderModel';
+import { AlertService } from '../../services/alert.service';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.page.html',
-  styleUrls: ['./perfil.page.scss'],
+  selector: 'app-perfil-profissional',
+  templateUrl: './perfil-profissional.page.html',
+  styleUrls: ['./perfil-profissional.page.scss'],
 })
-export class PerfilPage {
+export class PerfilProfissionalPage {
 
-  form: CustomerModel = new CustomerModel();
+  form: ServiceProviderModel = new ServiceProviderModel();
+  cities: Array<string> = new Array<string>();
+  citiesCare: Array<string> = new Array<string>();
+  states: Array<IAddressState> = new Array<IAddressState>();
 
   constructor(
-    private customerSrv: CustomerService,
+    private serviceProviderSrv: ServiceProviderService,
     private userSrv: UserService,
     private alertCtrl: AlertController,
     private alertSrv: AlertService,
-    private cameraSrv: CameraService
+    private cameraSrv: CameraService,
+    private addressSrv: AddressService
   ) { }
 
   ionViewDidEnter() {
     this.loadData();
+    this.loadStates();
   }
 
   async openLibraryPictures() {
@@ -34,10 +40,25 @@ export class PerfilPage {
     this.form.photo = base64;
   }
 
-  async loadData() {
-    const {success, data} = await this.customerSrv.GetById(this.userSrv.UserData.uid);
+  async loadStates() {
+    const { success, data } = await this.addressSrv.getAllStates();
     if (success) {
-      this.form = data as CustomerModel;
+      this.states = data as IAddressState[];
+    }
+  }
+
+  async selectState(event) {
+    const state = event.detail.value;
+    const { success, data } = await this.addressSrv.getAllCities(state);
+    if (success) {
+      this.cities = data as string[];
+    }
+  }
+
+  async loadData() {
+    const { success, data } = await this.serviceProviderSrv.GetById(this.userSrv.UserData.uid);
+    if (success) {
+      this.form = data as ServiceProviderModel;
       this.fixPathPhoto();
     }
   }
@@ -49,7 +70,7 @@ export class PerfilPage {
   }
 
   async save() {
-    const { success, data } = await this.customerSrv.post(this.form);
+    const { success, data } = await this.serviceProviderSrv.post(this.form);
     if (success) {
       this.form = data;
       this.fixPathPhoto();
@@ -59,7 +80,7 @@ export class PerfilPage {
 
 
   async changePasswordHandle(currentPassword: string, newPassword: string, confirmNewPassword: string) {
-    const { success } = await this.customerSrv.changePassword(currentPassword, newPassword, confirmNewPassword);
+    const { success } = await this.serviceProviderSrv.changePassword(currentPassword, newPassword, confirmNewPassword);
     if (success) {
       this.alertSrv.toast('Senha alterada com sucesso');
     }

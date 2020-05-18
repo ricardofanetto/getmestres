@@ -7,7 +7,7 @@ import { OrderService } from '../../services/order.service';
   templateUrl: './disponiveis.page.html',
   styleUrls: ['./disponiveis.page.scss'],
 })
-export class DisponiveisPage implements OnInit {
+export class DisponiveisPage {
 
   list: IOrders[] = [];
 

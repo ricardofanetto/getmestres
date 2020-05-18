@@ -61,7 +61,8 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () =>
+            loadChildren: () => perfil === 'serviceProvider' ?
+              import('../perfil-profissional/perfil-profissional.module').then(m => m.PerfilProfissionalPageModule) :
               import('../perfil/perfil.module').then(m => m.PerfilPageModule)
           }
         ]

@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center" color="primary">
+    <ion-title>Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()">
+        Salvar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <div class="photo-container">
+      <img (click)="openLibraryPictures()" [src]="!!form.photo ? form.photo : 'assets/no-picture.png'" />
+    </div>
+    <ion-item-divider>
+      <ion-label>Dados do usuário</ion-label>
+    </ion-item-divider>
+    <ion-item lines="none">
+      <ion-label position="stacked">Nome</ion-label>
+      <ion-input inputmode="text" type="text" placeholder="João Pedro" [(ngModel)]="form.name"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">E-mail</ion-label>
+      <ion-input inputmode="email" type="email" placeholder="joao@mail.com" [(ngModel)]="form.email"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Telefone</ion-label>
+      <ion-input inputmode="text" [brmasker]="{phone: true}" placeholder="(00) 00000-0000" type="text"
+        [(ngModel)]="form.phone"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-list lines="none">
+    <ion-item-divider>
+      <ion-label>Endereço</ion-label>
+    </ion-item-divider>
+    <ion-item lines="none">
+      <ion-label position="stacked">CEP</ion-label>
+      <ion-input inputmode="number" placeholder="00000-000" [(ngModel)]="form.zipCode"
+        [brmasker]="{ mask: '99999-999', type: 'nun' }"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Endereço</ion-label>
+      <ion-input type="text" placeholder="Rua são joão" [(ngModel)]="form.address"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Complemento</ion-label>
+      <ion-input type="text" placeholder="Próximo a travessa 10" [(ngModel)]="form.addressComplement"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Estado</ion-label>
+      <ion-select [value]="form.state" placeholder="Selecione" (ionChange)="selectState($event)">
+        <ion-select-option *ngFor="let state of states" [value]="state.sigla">{{state.nome}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">Cidade</ion-label>
+      <ion-select [disabled]="cities.length === 0" [value]="form.city" placeholder="Selecione">
+        <ion-select-option *ngFor="let city of cities" [value]="city">{{city}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-list lines="none">
+    <ion-item-divider>
+      <ion-label>Aplicativo</ion-label>
+    </ion-item-divider>
+    <ion-item (click)="changePassword()">
+      <ion-label>Trocar Senha</ion-label>
+    </ion-item>
+    <ion-item (click)="logout()">
+      <ion-label>Logout</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
