@@ -1,3 +1,6 @@
+import { SubCategoryService } from './../../services/sub-category.service';
+import { CategoryService } from './../../services/category.service';
+import { ICategory } from './../../interfaces/ICategory';
 import { IAddressState } from './../../interfaces/IAddressState';
 import { AddressService } from './../../services/address.service';
 import { ServiceProviderService } from './../../services/serviceProvider.service';
@@ -8,6 +11,7 @@ import { Component } from '@angular/core';
 import { ServiceProviderModel } from '../../models/serviceProviderModel';
 import { AlertService } from '../../services/alert.service';
 import { environment } from '../../environments/environment';
+import { ISubCategory } from '../../interfaces/ISubCategory';
 
 @Component({
   selector: 'app-perfil-profissional',
@@ -20,6 +24,10 @@ export class PerfilProfissionalPage {
   cities: Array<string> = new Array<string>();
   citiesCare: Array<string> = new Array<string>();
   states: Array<IAddressState> = new Array<IAddressState>();
+  categories: Array<ICategory> = new Array<ICategory>();
+  subCategories: Array<ISubCategory> = new Array<ISubCategory>();
+  subCategoriesCare: Array<string> = new Array<string>();
+  categorySelected: string;
 
   constructor(
     private serviceProviderSrv: ServiceProviderService,
@@ -27,12 +35,15 @@ export class PerfilProfissionalPage {
     private alertCtrl: AlertController,
     private alertSrv: AlertService,
     private cameraSrv: CameraService,
-    private addressSrv: AddressService
+    private addressSrv: AddressService,
+    private categorySrv: CategoryService,
+    private subCategorySrv: SubCategoryService
   ) { }
 
   ionViewDidEnter() {
     this.loadData();
     this.loadStates();
+    this.loadCategories();
   }
 
   async openLibraryPictures() {
@@ -63,6 +74,22 @@ export class PerfilProfissionalPage {
     }
   }
 
+  async loadCategories() {
+    const { success, data } = await this.categorySrv.GetAll();
+    if (success) {
+      this.categories = data as ICategory[];
+    }
+  }
+
+  async loadSubCategory(categoridUid: string) {
+    const { success, data } = await this.subCategorySrv.getAllByCategory(categoridUid);
+    if (success) {
+      this.subCategories = data as ISubCategory[];
+    } else {
+      this.subCategories = [];
+    }
+  }
+
   fixPathPhoto() {
     if (this.form.photo) {
       this.form.photo = `${environment.url_api}/storage/${this.form.photo}`;
@@ -70,6 +97,8 @@ export class PerfilProfissionalPage {
   }
 
   async save() {
+    this.form.categoriesCare = this.subCategoriesCare.join(', ');
+    this.form.citiesCare = this.citiesCare.join(', ');
     const { success, data } = await this.serviceProviderSrv.post(this.form);
     if (success) {
       this.form = data;

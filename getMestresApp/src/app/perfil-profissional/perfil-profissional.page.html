@@ -62,6 +62,34 @@
   </ion-list>
   <ion-list lines="none">
     <ion-item-divider>
+      <ion-label>Cidades Atendidas</ion-label>
+    </ion-item-divider>
+    <ion-item lines="none">
+      <ion-label position="stacked">Cidades que eu atendo</ion-label>
+      <ion-select [disabled]="cities.length === 0" [(ngModel)]="citiesCare" multiple placeholder="Selecione">
+        <ion-select-option *ngFor="let city of cities" [value]="city">{{city}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-list lines="none">
+    <ion-item-divider>
+      <ion-label>Categotis atendidas</ion-label>
+    </ion-item-divider>
+    <ion-item lines="none">
+      <ion-label position="stacked">Categorias</ion-label>
+      <ion-select [(ngModel)]="categorySelected" placeholder="Selecione"  (ionChange)="loadSubCategory($event.detail.value)">
+        <ion-select-option *ngFor="let category of categories" [value]="category.uid">{{category.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label position="stacked">SubCategorias</ion-label>
+      <ion-select [disabled]="categories.length === 0" [(ngModel)]="subCategoriesCare" placeholder="Selecione" multiple>
+        <ion-select-option *ngFor="let subCategory of subCategories" [value]="subCategory.uid">{{subCategory.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-list lines="none">
+    <ion-item-divider>
       <ion-label>Aplicativo</ion-label>
     </ion-item-divider>
     <ion-item (click)="changePassword()">
